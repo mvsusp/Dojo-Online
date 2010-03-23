@@ -7,10 +7,6 @@ describe User do
     }
   end
 
-  it "should create a new instance given valid attributes" do
-    User.create!(@valid_attributes)
-  end
-  
   it "should not allow two users with the same name" do
     User.create(:name => "test")
     invalid_user = User.create(:name => "test")

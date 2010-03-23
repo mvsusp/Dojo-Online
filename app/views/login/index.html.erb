@@ -1,2 +1,4 @@
-<h1>Login#index</h1>
-<p>Find me in app/views/login/index.html.erb</p>
+<%= form_tag :controller => "user", :action => "create" %>
+Name: <%= text_field "user", "name" %>
+<br />
+<%= submit_tag "Login" %>

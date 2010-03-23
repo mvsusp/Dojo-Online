@@ -5,6 +5,17 @@ require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environ
 require 'spec/autorun'
 require 'spec/rails'
 
+
+require 'capybara'
+require 'capybara/dsl'
+
+include Capybara
+
+Capybara.default_driver = :selenium
+
+
+
+
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'
 

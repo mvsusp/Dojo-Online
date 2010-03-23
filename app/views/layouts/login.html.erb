@@ -1,0 +1,6 @@
+<h1>Dojo online</h1>
+<%= flash[:user] if flash[:user] %>
+
+<%= yield %>
+<br />
+<%= link_to "Logout", :action => "logout" if cookies[:user] %>
