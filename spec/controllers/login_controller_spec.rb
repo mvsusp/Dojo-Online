@@ -2,15 +2,15 @@ require 'spec_helper'
 
 describe LoginController do
 
-  it "should use LoginController" do
-    controller.should be_an_instance_of(LoginController)
+  it "should redirect to login on invalid controller" do
+    get 'blah'
+    response.should redirect_to(:controller => 'login', :action => 'index')
+  end
+
+  
+  it "should redirect to login on invalid action" do
+    get 'user/blah'
+    response.should redirect_to(:controller => 'login', :action => 'index')
   end
   
-
-  describe "GET 'index'" do
-    it "should be successful" do
-      get 'index'
-      response.should be_success
-    end
-  end
 end
