@@ -13,12 +13,9 @@ class UserController < ApplicationController
   end
 
   def remove
-    if cookies[:user]
-      @user = User.find(:first, :conditions => {:name => cookies[:user]})
-      @user.delete
-      cookies.delete :user
-    end
-
+    @user = User.find(:first, :conditions => {:name => cookies[:user]})
+    @user.delete
+    cookies.delete :user
     redirect_to :controller => "login", :action => "index"
   end
 end

@@ -7,10 +7,6 @@ class LoginController < ApplicationController
   end
 
   def welcome
-    if not cookies[:user]  
-      flash[:user] = "Você precisa fazer o login!"
-      redirect_to :action => "index"
-    end
   end
 
   def logout
