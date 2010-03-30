@@ -1,0 +1,737 @@
+# Logfile created on Fri Mar 26 15:18:30 -0300 2010  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('test', '2010-03-26 19:02:10', '2010-03-26 19:02:10')[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-26 16:02:19) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 51ms (View: 47, DB: 2) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-26 16:02:20) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.2ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-26 19:02:20', '2010-03-26 19:02:20')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 11ms (DB: 0) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-26 16:02:20) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-26 16:02:20) [GET]
+Redirected to http://localhost:9887/login/welcome
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-26 16:02:20) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-26 16:02:20) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-26 16:02:20) [GET]
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (3.4ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (1)) [0m
+Redirected to http://localhost:9887/
+Completed in 13ms (DB: 4) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-26 16:02:20) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-26 16:02:20) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-26 16:02:21) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.4ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-26 19:02:21', '2010-03-26 19:02:21')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 13ms (DB: 1) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-26 16:02:21) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-26 16:02:21) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-26 16:02:21) [GET]
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (13.1ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (2)) [0m
+Redirected to http://localhost:9887/
+Completed in 15ms (DB: 13) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-26 16:02:21) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#index (for 0.0.0.0 at 2010-03-26 16:02:21) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/]
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Create (0.9ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('test', '2010-03-30 15:11:37', '2010-03-30 15:11:37')[0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 12:11:46) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 49ms (View: 45, DB: 3) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 12:11:46) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.2ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 15:11:46', '2010-03-30 15:11:46')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 25ms (DB: 0) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 12:11:46) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 12:11:46) [GET]
+Redirected to http://localhost:9887/login/welcome
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 12:11:46) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 12:11:47) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 12:11:47) [GET]
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (2.3ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (1)) [0m
+Redirected to http://localhost:9887/
+Completed in 51ms (DB: 4) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 12:11:47) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 12:11:47) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 12:11:47) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 15:11:48', '2010-03-30 15:11:48')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 22ms (DB: 1) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 12:11:48) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 12:11:48) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 12:11:48) [GET]
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (2.3ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (2)) [0m
+Redirected to http://localhost:9887/
+Completed in 5ms (DB: 3) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 12:11:48) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 13ms (View: 5, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#index (for 0.0.0.0 at 2010-03-30 12:11:48) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/]
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('test', '2010-03-30 15:12:00', '2010-03-30 15:12:00')[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 12:12:08) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 13ms (View: 9, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 12:12:09) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 15:12:09', '2010-03-30 15:12:09')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 10ms (DB: 1) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 12:12:09) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 12:12:09) [GET]
+Redirected to http://localhost:9887/login/welcome
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 12:12:09) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 12:12:09) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 12:12:09) [GET]
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (1.9ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (1)) [0m
+Redirected to http://localhost:9887/
+Completed in 11ms (DB: 2) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 12:12:09) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 12:12:09) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 12:12:10) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.2ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 15:12:10', '2010-03-30 15:12:10')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 6ms (DB: 0) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 12:12:10) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 12:12:10) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 12:12:10) [GET]
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (3.6ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (2)) [0m
+Redirected to http://localhost:9887/
+Completed in 6ms (DB: 4) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 12:12:10) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#index (for 0.0.0.0 at 2010-03-30 12:12:10) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/]
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Create (0.4ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('test', '2010-03-30 18:07:37', '2010-03-30 18:07:37')[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:07:45) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 38ms (View: 24, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 15:07:46) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 18:07:46', '2010-03-30 18:07:46')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 10ms (DB: 1) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:07:46) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:07:46) [GET]
+Redirected to http://localhost:9887/login/welcome
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:07:46) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 15:07:46) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 15:07:46) [GET]
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (2.4ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (1)) [0m
+Redirected to http://localhost:9887/
+Completed in 37ms (DB: 3) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:07:46) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:07:46) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 4ms (View: 4, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 15:07:47) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 18:07:47', '2010-03-30 18:07:47')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 7ms (DB: 0) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:07:47) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 15:07:47) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 15:07:47) [GET]
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (2.4ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (2)) [0m
+Redirected to http://localhost:9887/
+Completed in 5ms (DB: 3) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:07:47) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#blah (for 0.0.0.0 at 2010-03-30 15:07:47) [GET]
+Redirected to http://test.host/
+Filter chain halted as [:verify_login] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/login/blah]
+
+
+Processing UserController#user/blah (for 0.0.0.0 at 2010-03-30 15:07:47) [GET]
+Redirected to http://test.host/
+Filter chain halted as [:verify_login] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/user/user%2Fblah]
+
+
+Processing UserController#user/blah (for 0.0.0.0 at 2010-03-30 15:07:47) [GET]
+Rendering user/user/blah
+Redirected to http://test.host/
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Create (0.4ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('test', '2010-03-30 18:10:44', '2010-03-30 18:10:44')[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:10:52) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 18ms (View: 15, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 15:10:52) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.2ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 18:10:52', '2010-03-30 18:10:52')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 21ms (DB: 0) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:10:52) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:10:53) [GET]
+Redirected to http://localhost:9887/login/welcome
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:10:53) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 15:10:53) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 15:10:53) [GET]
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (1.4ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (1)) [0m
+Redirected to http://localhost:9887/
+Completed in 11ms (DB: 2) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:10:53) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:10:53) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 15:10:53) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 18:10:53', '2010-03-30 18:10:53')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 7ms (DB: 0) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:10:53) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 15:10:54) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 15:10:54) [GET]
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (2.3ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (2)) [0m
+Redirected to http://localhost:9887/
+Completed in 5ms (DB: 3) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:10:54) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#blah (for 0.0.0.0 at 2010-03-30 15:10:54) [GET]
+Redirected to http://test.host/
+Filter chain halted as [:verify_login] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/login/blah]
+
+
+Processing UserController#user/blah (for 0.0.0.0 at 2010-03-30 15:10:54) [GET]
+Redirected to http://test.host/
+Filter chain halted as [:verify_login] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/user/user%2Fblah]
+
+
+Processing UserController#user/blah (for 0.0.0.0 at 2010-03-30 15:10:54) [GET]
+Rendering user/user/blah
+Redirected to http://test.host/
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Create (0.4ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('test', '2010-03-30 18:14:29', '2010-03-30 18:14:29')[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:14:37) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 15ms (View: 12, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 15:14:37) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 18:14:37', '2010-03-30 18:14:37')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 12ms (DB: 1) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:14:37) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:14:37) [GET]
+Redirected to http://localhost:9887/login/welcome
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:14:38) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 15:14:38) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 15:14:38) [GET]
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (1.8ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (1)) [0m
+Redirected to http://localhost:9887/
+Completed in 11ms (DB: 2) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:14:38) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:14:38) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 15:14:38) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 18:14:38', '2010-03-30 18:14:38')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 7ms (DB: 0) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:14:38) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 15:14:38) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 15:14:38) [GET]
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (3.6ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (2)) [0m
+Redirected to http://localhost:9887/
+Completed in 6ms (DB: 4) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:14:38) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 5ms (View: 5, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#blah (for 0.0.0.0 at 2010-03-30 15:14:38) [GET]
+Redirected to http://test.host/
+Filter chain halted as [:verify_login] rendered_or_redirected.
+Completed in 0ms (DB: 0) | 302 Found [http://test.host/login/blah]
+
+
+Processing UserController#user/blah (for 0.0.0.0 at 2010-03-30 15:14:38) [GET]
+Redirected to http://test.host/
+Filter chain halted as [:verify_login] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/user/user%2Fblah]
+
+
+Processing UserController#user/blah (for 0.0.0.0 at 2010-03-30 15:14:39) [GET]
+Rendering user/user/blah
+Redirected to http://test.host/login/welcome
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Create (0.4ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('test', '2010-03-30 18:15:38', '2010-03-30 18:15:38')[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = 'test') LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = '') LIMIT 1[0m
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:15:46) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 12ms (View: 7, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 15:15:46) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 18:15:47', '2010-03-30 18:15:47')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 11ms (DB: 1) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:15:47) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:15:47) [GET]
+Redirected to http://localhost:9887/login/welcome
+Completed in 2ms (DB: 0) | 302 Found [http://localhost/]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:15:47) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 15:15:47) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 15:15:47) [GET]
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (1.6ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (1)) [0m
+Redirected to http://localhost:9887/
+Completed in 10ms (DB: 2) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:15:47) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:15:47) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UserController#create (for 127.0.0.1 at 2010-03-30 15:15:47) [POST]
+  Parameters: {"commit"=>"Login", "user"=>{"name"=>"Lucas"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Create (0.3ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES('Lucas', '2010-03-30 18:15:47', '2010-03-30 18:15:47')[0m
+Redirected to http://localhost:9887/login/welcome
+Completed in 7ms (DB: 0) | 302 Found [http://localhost/user/create]
+
+
+Processing LoginController#welcome (for 127.0.0.1 at 2010-03-30 15:15:47) [GET]
+Rendering template within layouts/login
+Rendering login/welcome
+Completed in 2ms (View: 2, DB: 0) | 200 OK [http://localhost/login/welcome]
+
+
+Processing LoginController#logout (for 127.0.0.1 at 2010-03-30 15:15:48) [GET]
+Redirected to http://localhost:9887/user/remove
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/login/logout]
+
+
+Processing UserController#remove (for 127.0.0.1 at 2010-03-30 15:15:48) [GET]
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."name" = 'Lucas') LIMIT 1[0m
+  [4;35;1mUser Delete all (2.7ms)[0m   [0mDELETE FROM "users" WHERE ("id" IN (2)) [0m
+Redirected to http://localhost:9887/
+Completed in 5ms (DB: 3) | 302 Found [http://localhost/user/remove]
+
+
+Processing LoginController#index (for 127.0.0.1 at 2010-03-30 15:15:48) [GET]
+Rendering template within layouts/login
+Rendering login/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing LoginController#blah (for 0.0.0.0 at 2010-03-30 15:15:48) [GET]
+Redirected to http://test.host/
+Filter chain halted as [:verify_login] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/login/blah]
+
+
+Processing UserController#user/blah (for 0.0.0.0 at 2010-03-30 15:15:48) [GET]
+Redirected to http://test.host/
+Filter chain halted as [:verify_login] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://test.host/user/user%2Fblah]
+
+
+Processing UserController#user/blah (for 0.0.0.0 at 2010-03-30 15:15:48) [GET]
+Rendering user/user/blah
+Redirected to http://test.host/login/welcome

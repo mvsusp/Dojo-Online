@@ -18,7 +18,6 @@ class ApplicationController < ActionController::Base
       redirect_to :controller => 'login', :action => 'index'
     else
       redirect_to :controller => 'login', :action => 'welcome'
-    end
   end
 
   # Scrub sensitive parameters from your log
