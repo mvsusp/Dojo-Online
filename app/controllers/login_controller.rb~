@@ -1,6 +1,7 @@
 class LoginController < ApplicationController
 
   def index
+  debugger
     if cookies[:user] 
       redirect_to :action => "welcome"
     end

@@ -7,6 +7,10 @@ describe LoginController do
     response.should redirect_to(:controller => 'login', :action => 'index')
   end
 
-
+  
+  it "should redirect to login on invalid action" do
+    get 'user/blah'
+    response.should redirect_to(:controller => 'login', :action => 'index')
+  end
   
 end
