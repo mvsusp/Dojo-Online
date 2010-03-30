@@ -7,7 +7,7 @@ class UserController < ApplicationController
       # redirect_to :controller => "dojo", :action => "list"
       redirect_to :controller => "login", :action => "welcome"
     else
-      flash[:user] = "Erro - nome inválido ou em uso"
+      flash[:user] = "Error: username taken or invalid"
       redirect_to :controller => "login", :action => "index"
     end
   end

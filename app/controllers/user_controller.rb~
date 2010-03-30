@@ -7,18 +7,15 @@ class UserController < ApplicationController
       # redirect_to :controller => "dojo", :action => "list"
       redirect_to :controller => "login", :action => "welcome"
     else
-      flash[:user] = "Erro - nome inválido ou em uso"
+      flash[:user] = "Error: username taker or invalid"
       redirect_to :controller => "login", :action => "index"
     end
   end
 
   def remove
-    if cookies[:user]
-      @user = User.find(:first, :conditions => {:name => cookies[:user]})
-      @user.delete
-      cookies.delete :user
-    end
-
+    @user = User.find(:first, :conditions => {:name => cookies[:user]})
+    @user.delete
+    cookies.delete :user
     redirect_to :controller => "login", :action => "index"
   end
 end

@@ -4,7 +4,7 @@ require 'capybara/rails'
 
 describe 'Login and session' do
   
-  after(:each) do
+  after(:all) do
     visit('/login/logout')
   end
  

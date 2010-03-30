@@ -15,7 +15,7 @@ describe UserController do
   it "should redirect to welcome on invalid action when logged in" do
     cookies[:user] = "test";
     get 'user/blah'
-    response.should redirect_to(:controller => 'login', :action => 'index')
+    response.should redirect_to(:controller => 'login', :action => 'welcome')
   end
 
 end
