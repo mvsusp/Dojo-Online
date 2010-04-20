@@ -9,3 +9,4 @@ schema.rb
 config/*
 log/*
 db/*.sqlite3
+*~

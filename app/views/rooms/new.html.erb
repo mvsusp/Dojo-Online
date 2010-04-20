@@ -11,12 +11,15 @@
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </p>
-  <% Language.find(:all).each do |language| %>
-  <div>
-  <%= check_box_tag "room[language_ids][]", language.id, @room.languages.include?(language) %>
-  <%= language.name %>
-  </div>
-<% end %>
+  <p>  
+    Linguagens:<br />
+    <% Language.find(:all).each do |language| %>
+    <div>
+    <%= check_box_tag "room[language_ids][]", language.id, @room.languages.include?(language) %>
+    <%= language.name %>
+    </div>
+  </p>
+  <% end %>
   <p>
     <%= f.submit 'Create' %>
   </p>

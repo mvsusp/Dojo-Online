@@ -15,11 +15,12 @@ class ApplicationController < ActionController::Base
   
   def rescue_action(e)
     if not cookies[:user]
-      redirect_to :controller => 'login', :action => 'index'
-    else
-      redirect_to :controller => 'login', :action => 'welcome'
-    end
-  end
+       redirect_to :controller => 'login', :action => 'index'
+     else
+       redirect_to :controller => 'login', :action => 'welcome'
+     end
+   end
+
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password

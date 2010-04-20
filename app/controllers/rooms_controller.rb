@@ -44,7 +44,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        flash[:notice] = 'Room was successfully created.'
+        #flash[:notice] = 'Room was successfully created.'
         format.html { redirect_to(@room) }
         format.xml  { render :xml => @room, :status => :created, :location => @room }
       else
@@ -61,7 +61,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.update_attributes(params[:room])
-        flash[:notice] = 'Room was successfully updated.'
+        #flash[:notice] = 'Room was successfully updated.'
         format.html { redirect_to(@room) }
         format.xml  { head :ok }
       else
