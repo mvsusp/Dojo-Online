@@ -6,24 +6,20 @@ class Chat
     path = env["PATH_INFO"]
     if path =~ /^\/chat\/?/
       session = Rack::Request.new env
-      room = session["room"].to_i
       if env["REQUEST_METHOD"] == "GET"
-        chats = ChatMessage.find :all
-        json = ""
-        for chat in chats
-          json = json + "{user_name: \"" + chat[:poster] + "\", message: \"" + 
-            chat[:message] + "\"},"
+        return [200, {"Content-Type" => "text/html"}, ['']] if session["room"].to_i == 0
+        room = Room.find(session["room"].to_i)
+        messages = room.chat_messages.map do |message|
+          {:poster => message.poster, :message => message.message}
         end
-        json = json.chop
-        json = "[" + json + "]"
-        [200, {"Content-Type" => "text/html"}, [json]]
+        [200, {"Content-Type" => "text/html"}, [messages.to_json]]
       else
-        if session.cookies["user"] != ""
-          new_chat = ChatMessage.new
-          new_chat[:message] = session["message"]
-          new_chat[:poster] = session.cookies["user"]
-          #new_chat[:room] = session["room"] #  rooms do not exist yet
-          new_chat.save
+        unless session.cookies["user"].empty?
+          return [200, {"Content-Type" => "text/html"}, ['']] if session["room"].to_i == 0
+          room = Room.find(session["room"].to_i)
+          new_chat = ChatMessage.create(:message => session["message"], :poster => session.cookies["user"])
+          room.chat_messages << new_chat
+          room.save
         end
         [200, {"Content-Type" => "text/html"}, [""]]
       end

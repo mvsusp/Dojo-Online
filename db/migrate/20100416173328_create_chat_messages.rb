@@ -3,6 +3,8 @@ class CreateChatMessages < ActiveRecord::Migration
     create_table :chat_messages do |t|
       t.string :message
       t.string :poster
+      t.references :room
+      
       t.timestamps
     end
   end
