@@ -14,7 +14,9 @@ function add_to_chat_messages(messages)
         value += '<b>' + messages[i].poster + '</b>:' + messages[i].message +
             '<br />'
     }
+
     $('#chat_messages').html(value)
+    $('#chat_messages').scrollTo('max')
 
 }
 

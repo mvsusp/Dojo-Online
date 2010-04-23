@@ -1,9 +1,10 @@
 <script type="text/javascript" src="javascripts/jquery.js"> </script>
+<script type="text/javascript" src="javascripts/jquery.scrollTo.js"> </script>
 <script type="text/javascript" src="javascripts/chat.js"> </script>
 
 
 <div id="chat">
-  <div id="chat_messages" style="width: 500px; border: solid black 1px"> b</div>
+  <div id="chat_messages" style="width: 100%px; border: solid black 1px; overflow: auto; height: 300px"></div>
   <form id="send_chat" action="#">
     <input type="text" id="chat_message" value="" /> <input type="submit" value="Send" />
   </form>
