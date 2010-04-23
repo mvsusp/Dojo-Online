@@ -6,10 +6,10 @@ class Chat
     path = env["PATH_INFO"]
     if path =~ /^\/chat\/?/
       session = Rack::Request.new env 
-      return [400, {"Content-Type" => "text/html"}, ['']] if session["room"].to_i == 0 or 
-        not session.cookies['user'] or
+      return [400, {"Content-Type" => "text/html"}, ['No room received']] if session["room"].to_i == 0 
+      return [400, {"Content-Type" => "text/html"}, ['Not logged in']] if (not session.cookies['user']) or
         (session.cookies["user"] and session.cookies["user"].empty?)
-        
+      return [400, {"Content-Type" => "text/html"}, ['Non-existent room']] if Room.find(:first, :conditions => {:id => session['room'].to_i}) == nil
       if env["REQUEST_METHOD"] == "GET"
         room = Room.find(session["room"].to_i)
         messages = room.chat_messages.map do |message|
@@ -17,7 +17,7 @@ class Chat
         end
         [200, {"Content-Type" => "text/html"}, [messages.to_json]]
       else
-        return [400, {"Content-Type" => "text/html"}, ['']] if (not session['message']) or
+        return [400, {"Content-Type" => "text/html"}, ['Empty message']] if (not session['message']) or
           session['message'].empty?
         room = Room.find(session["room"].to_i)
         new_chat = ChatMessage.create(:message => session["message"], :poster => session.cookies["user"])
