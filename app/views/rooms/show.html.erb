@@ -1,3 +1,4 @@
 <p>Bem vindo(a) à sala <strong><%=h @room.name %></strong>!
 <p>Você é <%=h cookies[:user] %></p>
-<pre><%= @room.description %></pre>
+<p>O dono da sala é <%=h @room.user.name %></p>
+<pre><%=h @room.description %></pre>

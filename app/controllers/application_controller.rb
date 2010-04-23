@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  rescue_from ActionController::RoutingError, :with => :route_not_found
   before_filter :verify_login, :except => ['index', 'create'] 
   
   helper :all # include all helpers, all the time
@@ -14,13 +15,16 @@ class ApplicationController < ActionController::Base
   end
   
   def rescue_action(e)
-    if not cookies[:user]
-       redirect_to :controller => 'login', :action => 'index'
-     else
-       redirect_to :controller => 'login', :action => 'welcome'
-     end
-   end
+#debugger
+    redirect_to :controller => 'login', :action => 'index' unless cookies[:user]
+    redirect_to :controller => 'login', :action => 'welcome' if cookies[:user]
+  end
 
+  protected
+
+  def route_not_found
+    redirect_to :controller => 'login', :action => 'index'
+  end
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password

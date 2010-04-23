@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(:version => 20100417213448) do
   create_table "rooms", :force => true do |t|
     t.string   "name"
     t.string   "description"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.integer  "room_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

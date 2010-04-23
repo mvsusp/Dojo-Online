@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe UserController do
 
+integrate_views
+
   after(:each) do
     cookies[:user] = nil;
   end

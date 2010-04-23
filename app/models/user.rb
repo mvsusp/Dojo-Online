@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  belongs_to :room
+  has_one :room
 
   validates_presence_of :name
   validates_uniqueness_of :name

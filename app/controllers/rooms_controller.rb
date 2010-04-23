@@ -40,11 +40,13 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.xml
   def create
+    @user = User.find(:first, :conditions => {:name => cookies[:user]})
     @room = Room.new(params[:room])
+    @room.user = @user
 
     respond_to do |format|
       if @room.save
-        #flash[:notice] = 'Room was successfully created.'
+
         format.html { redirect_to(@room) }
         format.xml  { render :xml => @room, :status => :created, :location => @room }
       else
