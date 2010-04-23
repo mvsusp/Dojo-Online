@@ -19,7 +19,7 @@ describe 'Chat Messages post' do
   it 'should NOT create a new ChatMessage when not logged in' do
     cookies[:user] = nil
     post "/chat", :message => "test36", :room => 1
-    response.should be_success
+    response.status.should == '400'
     chats = ChatMessage.find(:first, :conditions => {:message => "test36"}) 
     chats.should == nil; 
   end
@@ -27,7 +27,7 @@ describe 'Chat Messages post' do
   it 'should not create a new ChatMessage without a Room' do
     cookies[:user] = 'User'
     post '/chat', :message => 'm'
-    response.should be_success
+    response.status.should == '400'
     chat = ChatMessage.find :first, :conditions => {:message => "m"}
     chat.should be_nil
   end
@@ -35,7 +35,7 @@ describe 'Chat Messages post' do
   it 'should not create an empty ChatMessage' do
     cookies[:user] = "User"
     post '/chat', :message => "", :room => 1
-    response.should be_success
+    response.status.should == '400'
     chat = ChatMessage.find :first, :conditions => {:poster => "User"}
     chat.should be_nil
   end
@@ -68,6 +68,7 @@ describe 'Chat message list' do
 
 
   it 'should return a valid json' do
+    cookies['user'] = "User"
     get "/chat", :room => 1
     response.should be_success
     response.body.should == "[]"
