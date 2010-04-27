@@ -4,8 +4,8 @@
 # exclude patterns (uncomment them if you want to use them):
 # *.[oa]
 # *~
+db/schema.rb
 coverage/*
-schema.rb
 config/*
 log/*
 db/*.sqlite3

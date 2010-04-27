@@ -13,4 +13,11 @@ class LoginController < ApplicationController
   def logout
     redirect_to :controller => "user", :action => "remove"
   end
+
+
+  def new
+    redirect_to :controller => "rooms", :action => "new"
+  end
+
+
 end
