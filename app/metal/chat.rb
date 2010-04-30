@@ -15,7 +15,7 @@ class Chat
         last_check = Time.at(session['last_check'].to_i).utc
         json_res = {:server_time => Time.now.to_i}
         
-        messages_since_last_check = room.chat_messages.find(:all, :conditions => ['created_at > ?', last_check])
+        messages_since_last_check = room.chat_messages.find(:all, :conditions => ['created_at >= ?', last_check])
         messages = messages_since_last_check.map do |message| 
           {:poster => message.poster, :message => CGI.escapeHTML(message.message), :time => message.updated_at.strftime("%T")}
         end
