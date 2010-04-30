@@ -1,5 +1,8 @@
+var server_time = 0;
+
 function get_chats(room, callback) {
-    $.getJSON('/chat', {'room': room}, callback)
+  
+    $.getJSON('/chat', {'room': room, 'last_check': server_time}, callback)
 }
 
 function send_chat(message, room)
@@ -7,17 +10,18 @@ function send_chat(message, room)
     $.post('/chat', {'message': message, 'room': room})
 }
 
-function add_to_chat_messages(messages)
+function add_to_chat_messages(res)
 {
-    var value = ''
+    var value = $('#chat_messages').html()
+    if (res == null) return;
+    messages = res['messages']
     for (var i = 0; i < messages.length; i++) {
-        value += '<b>' + messages[i].poster + '</b>:' + messages[i].message +
+        value += '(' + messages[i].time + ') <b>' + messages[i].poster + '</b>:' + messages[i].message +
             '<br />'
     }
-
+    server_time = res['server_time']
     $('#chat_messages').html(value)
     $('#chat_messages').scrollTo('max')
-
 }
 
 $(document).ready( 
@@ -29,7 +33,7 @@ $(document).ready(
                 return false
             }
         )
-      
+      $.ajaxSetup({timeout: 1000})      
       setInterval(function () { 
                       get_chats(1, add_to_chat_messages)
                   }, 1000);
