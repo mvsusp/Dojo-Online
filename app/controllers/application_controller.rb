@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
     end
   end
   
+
   def rescue_action(e)
-#debugger
     redirect_to :controller => 'login', :action => 'index' unless cookies[:user]
-    redirect_to :controller => 'login', :action => 'welcome' if cookies[:user]
+    redirect_to :controller => 'login', :action => 'welcome' if e.is_a? ActionController::UnknownAction
   end
 
   protected

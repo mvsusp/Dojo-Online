@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.xml
   def index
-    @rooms = Room.all
+    @rooms = Room.find(:all, :conditions => {:initiated => true})
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,6 +43,7 @@ class RoomsController < ApplicationController
     @user = User.find(:first, :conditions => {:name => cookies[:user]})
     @room = Room.new(params[:room])
     @room.user = @user
+    @room.initiated = false
 
     respond_to do |format|
       if @room.save
