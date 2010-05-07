@@ -22,6 +22,9 @@ function add_to_chat_messages(res)
     server_time = res['server_time']
     $('#chat_messages').html(value)
     $('#chat_messages').scrollTo('max')
+    setTimeout(function () { 
+        get_chats(1, add_to_chat_messages)
+    }, 1000);
 }
 
 $(document).ready( 
@@ -33,8 +36,7 @@ $(document).ready(
                 return false
             }
         )
-      $.ajaxSetup({timeout: 1000})      
-      setInterval(function () { 
+      setTimeout(function () { 
                       get_chats(1, add_to_chat_messages)
                   }, 1000);
         
