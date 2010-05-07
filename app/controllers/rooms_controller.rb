@@ -3,7 +3,6 @@ class RoomsController < ApplicationController
   # GET /rooms.xml
   def index
     @rooms = Room.find(:all, :conditions => {:initiated => true})
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @rooms }
