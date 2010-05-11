@@ -16,7 +16,7 @@ describe "/rooms/new.html.erb" do
 
     response.should have_tag("form[action=?][method=post]", rooms_path) do
       with_tag("input#room_name[name=?]", "room[name]")
-      with_tag("input#room_description[name=?]", "room[description]")
+      with_tag("textarea#room_description[name=?]", "room[description]")
     end
   end
 end

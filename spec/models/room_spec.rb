@@ -38,7 +38,6 @@ describe Room do
     invalid_room.should have(1).error_on(:languages)
   end
 
-
   it "should not allow blank language array" do
     invalid_room = Room.create({:name=>'test',:description => "something",:languages=>[],:user=>User.create(:name=>'foo')})
     invalid_room.should have(1).error_on(:languages)

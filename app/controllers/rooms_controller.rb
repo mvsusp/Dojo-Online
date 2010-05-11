@@ -42,7 +42,7 @@ class RoomsController < ApplicationController
     @user = User.find(:first, :conditions => {:name => cookies[:user]})
     @room = Room.new(params[:room])
     @room.user = @user
-    @room.initiated = false
+    @room.initiated = true
 
     respond_to do |format|
       if @room.save
