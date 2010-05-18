@@ -1,5 +1,8 @@
 <h1>Listing rooms</h1>
 
+<h3>Welcome, <%= cookies[:user] %>! </h3>
+
+<%= link_to 'New Room', new_room_path %>
 <table>
   <tr>
     <th>Name</th>
@@ -10,11 +13,9 @@
   <tr>
     <td><%=h room.name %></td>
     <td><%=h room.description %></td>
-    <td><%= link_to 'Show', room %></td>
+    <td><%= link_to 'Enter to room', room %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'Back to main', login_index_path %>

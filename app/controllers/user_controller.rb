@@ -5,7 +5,7 @@ class UserController < ApplicationController
     if (@user.save) 
       cookies[:user] = @user.name
       # redirect_to :controller => "dojo", :action => "list"
-      redirect_to :controller => "login", :action => "welcome"
+      redirect_to :controller => "rooms", :action => "index"
     else
       flash[:user] = "Error: username taken or invalid"
       redirect_to :controller => "login", :action => "index"
