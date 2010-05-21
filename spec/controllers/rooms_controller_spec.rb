@@ -2,8 +2,13 @@ require 'spec_helper'
 
 describe RoomsController do
 
-  before  do
+  before do
     @lang = [Language.create(:name => 'Ruby'), Language.create({:name => 'Java'})]
+    cookies[:user] = "Batman"
+  end
+
+  after do
+    cookies[:user] = ""
   end
 
   it "should not list uninitiated rooms" do
