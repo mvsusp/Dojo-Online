@@ -4,15 +4,15 @@
   <%= f.error_messages %>
 
   <p>
-    Nome da sala:<br />
+    Room name:<br />
     <%= f.text_field :name %>
   </p>
   <p>
-    Descrição:<br />
+    Description:<br />
     <%= f.text_area :description %>
   </p>
   <p>  
-    Linguagens:<br />
+    Languages:<br />
     <% Language.find(:all).each do |language| %>
     <div>
     <%= check_box_tag "room[language_ids][]", language.id, @room.languages.include?(language) %>
