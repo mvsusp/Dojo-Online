@@ -2,12 +2,12 @@ class LoginController < ApplicationController
 
   def index
     if cookies[:user] 
-      redirect_to :action => "welcome"
+      redirect_to :controller => "rooms", :action => "index"
     end
   end
 
   def welcome
-
+    
   end
 
   def logout
