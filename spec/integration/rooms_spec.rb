@@ -12,12 +12,9 @@ describe "Rooms" do
     visit('/')
     fill_in('user[name]', :with => 'Batman')
     click_button('Login')
+    @user = User.find(:first, :conditions => {:name => 'Batman'})
   end
-  
-  after(:each) do
-    Room.destroy_all
-  end
-  
+    
   it 'should create rooms and show them in the room list' do
     visit('/rooms/new')
     fill_in('room[name]', :with => 'Bat-cave')
@@ -30,21 +27,42 @@ describe "Rooms" do
     visit('/rooms')
     page.should have_content('Bat-cave')
     page.should have_content('Saint description, Batman!')
-    room = Room.find :first, :conditions => {:name => 'Bat-cave'}
   end
 
-  it 'should refresh automatically every 10 seconds' do
+  it 'should not allow two rooms with the same name' do
+    visit('/rooms/new')
+    fill_in('room[name]', :with => 'This name is taken')
+    fill_in('room[description]', :with => ':)')
+    check('room[language_ids][]')
+    click_button('Create')
     visit('/rooms')
-    @user = User.find(:first, :conditions => {:name => 'Batman'})
-    page.should_not have_content('Hall of Justice')
-    room = Room.create! :languages => [@l], 
-                        :description => 'Room of the Super-Friends',
-                        :user => @user,
-                        :name => 'Hall of Justice',
-                        :initiated => true
-    sleep 12
+    page.should have_content(':)')
+    
+    visit('/rooms/new')
+    fill_in('room[name]', :with => 'This name is taken')
+    fill_in('room[description]', :with => ':(')
+    check('room[language_ids][]')
+    click_button('Create')
+    page.should have_content('Name has already been taken')
     visit('/rooms')
-    page.should have_content('Hall of Justice')
-  end                                                           
+    page.should_not have_content(':(')
+  end
+
+#  it 'should refresh automatically every 10 seconds' do
+#    visit('/rooms')
+#    page.should_not have_content('Hall of Justice')
+
+#    room = Room.create
+#    room.initiated = true
+#    room.name = 'Hall of Justice'
+#    room.description = 'Room of the Super-Friends'
+#    room.user_id = @user.id
+#    room.languages = [@l]
+#    room.save!
+#    
+#    sleep 10
+#          
+#    page.should have_content('Hall of Justice')
+#  end
 
 end

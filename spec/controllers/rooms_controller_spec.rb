@@ -3,6 +3,7 @@ require 'spec_helper'
 describe RoomsController do
 
   before do
+    Room.destroy_all
     @lang = [Language.create(:name => 'Ruby'), Language.create({:name => 'Java'})]
     cookies[:user] = "Batman"
   end
