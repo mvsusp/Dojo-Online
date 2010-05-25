@@ -35,7 +35,7 @@ describe 'Logout' do
   end
   
   it 'should remember your username' do
-    visit('/')
+    visit('/rooms')
     page.should have_content('Lucas')
   end
   
