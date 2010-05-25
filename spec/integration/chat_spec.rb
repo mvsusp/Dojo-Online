@@ -20,10 +20,11 @@ describe 'Chat Messages post' do
     cookies[:user] = "User1"
     post '/chat', :message => "test1", :room => @room.id
     response.should be_success
-    chats = ChatMessage.find(:first, :conditions => {:message => "test1", :poster => "User1"}) 
-    chats[:poster].should == "User1"    
-    chats[:message].should == "test1"
-    chats[:room_id].should == @room.id
+    chats = ChatMessage.find(:all, :conditions => {:message => "test1", :poster => "User1"}) 
+    chats.size.should == 1
+    chats[0][:poster].should == "User1"    
+    chats[0][:message].should == "test1"
+    chats[0][:room_id].should == @room.id
   end
  
   it 'should NOT create a new ChatMessage when not logged in' do
@@ -61,7 +62,7 @@ describe 'Chat Messages post' do
     chat = ChatMessage.find :first, :conditions => {:poster => "User"}
     chat.should be_nil
   end
-
+  
   it 'should post each message only in its own room' do
     cookies[:user] = "User"
     post "/chat", :message => "test1", :room => @room.id
@@ -89,3 +90,75 @@ describe 'Chat Messages post' do
   
 end
 
+
+
+describe 'Chat Messages get' do
+
+  before :all do
+    Room.destroy_all
+    User.destroy_all
+    Language.destroy_all
+    user = User.create(:name => 'unique')
+    l = Language.create()
+    @room = Room.create! :languages => [l], :description => 'a', :user => user, :name => 'n'
+    @room2 = Room.create!  :languages => [l], :description => 'a', :user => user, :name => 'nqwe'
+  end
+
+  before :each do  
+    c = ChatMessage.destroy_all
+  end
+
+  it 'should return a list with no messages' do
+    cookies[:user] = 'User'
+    get '/chat', :room => @room.id
+    response.body.should == '[]'
+  end
+  
+  it 'should return the included message' do
+    cookies[:user] = 'User'
+    post '/chat', :room => @room.id, :message => 'Mensagem'
+    get '/chat', :room => @room.id
+    chat = ChatMessage.find :first, :conditions => {:message => 'Mensagem', :room_id => @room.id}
+    r = [{:message => 'Mensagem', :poster => 'User', :timestamp => chat[:created_at]}]
+    response.body.should == r.to_json
+  end
+  
+  it 'should return \'Not logged in\' when not logged in' do
+    get '/chat', :room => @room.id
+    response.status.should == '400'
+    response.body.should == 'Not logged in'
+  end
+  
+  it 'should return \'Room not found\' with invalid room' do
+    cookies[:user] = 'User'
+    get '/chat', :room => -1
+    response.status.should == '400'
+    response.body.should == 'Room not found'
+  end
+  
+    it 'should return the correct message of the correct room' do
+    cookies[:user] = 'User'
+    post '/chat', :room => @room.id, :message => 'Mensagem1'
+    post '/chat', :room => @room2.id, :message => 'Mensagem2'
+    get '/chat', :room => @room.id
+    chat = ChatMessage.find :first, :conditions => {:message => 'Mensagem1', :room_id => @room.id}
+    r = [{:message => 'Mensagem1', :poster => 'User', :timestamp => chat[:created_at]}]
+    response.body.should == r.to_json
+    get '/chat', :room => @room2.id
+    chat = ChatMessage.find :first, :conditions => {:message => 'Mensagem2', :room_id => @room2.id}
+    r = [{:message => 'Mensagem2', :poster => 'User', :timestamp => chat[:created_at]}]
+    response.body.should == r.to_json
+  end
+  
+  it 'should get a lot of chat with no problem' do
+    cookies[:user] = 'User'
+    r = []
+    for i in 1 .. 250 do
+      post '/chat', :message => 'test' + i.to_s, :room => @room.id
+      get '/chat', :room => @room.id
+      chat = ChatMessage.find :last, :conditions => {:message => 'test' + i.to_s, :room_id => @room.id}
+      #r += [{:message => 'test' + i.to_s, :poster => 'User', :timestamp => chat[:created_at]}]
+      #response.body.should == chat.to_json
+    end
+  end
+end
