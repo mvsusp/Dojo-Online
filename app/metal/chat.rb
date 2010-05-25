@@ -1,5 +1,7 @@
 # Allow the metal piece to run in isolation
 require(File.dirname(__FILE__) + "/../../config/environment") unless defined?(Rails)
+require 'json'
+require 'json/ext'
 
 class Chat
   def self.call(env)
