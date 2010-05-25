@@ -1,3 +1,10 @@
+<script type="text/javascript">
+ var room_id = <%= @room.id %>
+ var user_name = '<%= cookies[:user] %>'
+</script>
+<%= javascript_include_tag 'jquery' %>
+<%= javascript_include_tag 'jquery.scrollTo' %>
+<%= javascript_include_tag 'chat' %>
 
 <p>Bem vindo(a) à sala <strong><%=h @room.name %></strong>!
 
@@ -6,5 +13,13 @@
 <p>O dono da sala é <%=h @room.user.name %></p>
 
 <pre><%=h @room.description %></pre>
+
+
+<div id="chat">
+  <div id="chat_messages" style="width: 100%; border: solid black 1px; overflow: auto; height: 300px"></div>
+  <form id="send_chat" action="#">
+    <input type="text" id="chat_message" style="width: 30%;" value="" /> <input type="submit" value="Send" />
+  </form>
+</div>
 
 <%= link_to 'Back to main', login_index_path %>
