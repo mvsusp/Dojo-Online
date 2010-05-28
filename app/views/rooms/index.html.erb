@@ -12,7 +12,11 @@
 <% @rooms.each do |room| %>
   <tr>
     <td><%=h room.name %></td>
-    <td><%=h room.description[0..30] %></td>
+    <% if room.description.length < 30 %>
+             <td> <%=h room.description %></td>
+    <% else %>
+	     <td><%=h room.description[0..30] %>...</td>
+    <% end %>
     <td><%= link_to 'Enter to room', room %></td>
   </tr>
 <% end %>
