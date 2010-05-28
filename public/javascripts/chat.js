@@ -31,7 +31,7 @@ function add_to_chat_messages(messages)
             '<br />'
     }
     $('#chat_messages').html(value)
-    $('#chat_messages').scrollTo('max')
+    $('#chat_messages').scrollTo({top:'100%', left=0})
     $('#chat_message').attr('disabled', false);
     setTimeout(function () { 
         get_chats(room_id, add_to_chat_messages)
