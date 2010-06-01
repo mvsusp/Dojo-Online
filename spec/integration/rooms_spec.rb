@@ -48,21 +48,4 @@ describe "Rooms" do
     page.should_not have_content(':(')
   end
 
-#  it 'should refresh automatically every 10 seconds' do
-#    visit('/rooms')
-#    page.should_not have_content('Hall of Justice')
-
-#    room = Room.create
-#    room.initiated = true
-#    room.name = 'Hall of Justice'
-#    room.description = 'Room of the Super-Friends'
-#    room.user_id = @user.id
-#    room.languages = [@l]
-#    room.save!
-#    
-#    sleep 10
-#          
-#    page.should have_content('Hall of Justice')
-#  end
-
 end
