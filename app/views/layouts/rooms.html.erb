@@ -9,7 +9,10 @@
 </head>
 <body>
 
+<h1>Dojo Online</h1>
+<%= link_to "Logout", :controller => "login", :action => "logout" if cookies[:user] %>
 <p style="color: green"><%= flash[:notice] %></p>
+
 
 <%= yield %>
 

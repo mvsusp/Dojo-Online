@@ -3,12 +3,13 @@
 
 class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, :with => :route_not_found
-  before_filter :verify_login, :except => ['index', 'create'] 
+  before_filter :verify_login, :except => ['create'] 
   
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
  
   def verify_login
+    return if self.controller_name == 'login' and (self.action_name == 'index')
     if (not cookies[:user]) 
       redirect_to :controller => 'login'
     end
