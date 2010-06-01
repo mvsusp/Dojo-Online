@@ -9,6 +9,7 @@ describe 'Login and session' do
   end
  
   it 'should login with a valid name' do
+    User.destroy_all
     visit('/')
     fill_in('user[name]', :with => 'Lucas')
     click_button('Login')
@@ -29,6 +30,8 @@ end
 describe 'Logout' do
   
   before(:all) do
+    User.destroy_all
+    visit('/login/logout')
     visit('/')
     fill_in('user[name]', :with => 'Lucas')
     click_button('Login')
@@ -92,22 +95,4 @@ describe "Rooms" do
     visit('/rooms')
     page.should_not have_content(':(')
   end
-
-  it 'should refresh automatically every 10 seconds' do
-    visit('/rooms')
-    page.should_not have_content('Hall of Justice')
-
-    room = Room.create
-    room.initiated = true
-    room.name = 'Hall of Justice'
-    room.description = 'Room of the Super-Friends'
-    room.user_id = @user.id
-    room.languages = [@l]
-    room.save!
-    
-    sleep 10
-          
-    page.should have_content('Hall of Justice')
-  end
-
 end
