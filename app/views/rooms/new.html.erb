@@ -1,18 +1,18 @@
 <h1>New room</h1>
 
 <% form_for(@room) do |f| %>
-  <%= f.error_messages %>
+  <%= f.error_messages :class => 'ui-state-highlight ui-corner-all' %>
 
   <p>
-    Room name:<br />
+    <h2>Room name</h2>
     <%= f.text_field :name %>
   </p>
   <p>
-    Description:<br />
+    <h2>Description</h2>
     <%= f.text_area :description %>
   </p>
   <p>  
-    Languages:<br />
+    <h2>Languages</h2>
     <% Language.find(:all).each do |language| %>
     <div>
     <%= check_box_tag "room[language_ids][]", language.id, @room.languages.include?(language) %>
@@ -21,7 +21,7 @@
   </p>
   <% end %>
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Create', :class => "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" %>
   </p>
 <% end %>
 
