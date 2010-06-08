@@ -7,13 +7,14 @@
     <title>Rooms: <%= controller.action_name %></title>
     <%= javascript_include_tag 'jquery' %>
     <%= javascript_include_tag 'jquery-ui' %>
+    <%= javascript_include_tag 'application' %>
     <%= stylesheet_link_tag 'base' %>
     <%= stylesheet_link_tag 'cupertino/cupertino' %>
   </head>
   <body>
 
     <h1>Dojo Online</h1>
-    <%= link_to( '<span class="ui-button-text">Logout</span>', {:controller => "login", :action => "logout"}, :class => "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only") if cookies[:user] %>
+    <%= link_to( '<span class="mybutton">Logout</span>', {:controller => "login", :action => "logout"}) if cookies[:user] %>
     <p style="color: green"><%= flash[:notice] %></p>
 
 

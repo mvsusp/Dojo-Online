@@ -1,9 +1,44 @@
 /*demo page css*/
-			body{ font: 70% "Trebuchet MS", sans-serif; margin: 50px;}
-			.demoHeaders { margin-top: 2em; }
-			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
-			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
-			ul#icons {margin: 0; padding: 0;}
-			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
-			ul#icons span.ui-icon {float: left; margin: 0 4px;}
-		
+body{ font: 70% "Trebuchet MS", sans-serif; margin: 50px;}
+.demoHeaders { margin-top: 2em; }
+#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+ul#icons {margin: 0; padding: 0;}
+ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+ul#icons span.ui-icon {float: left; margin: 0 4px;}
+.padding {padding-left: 10px;}
+
+#rounded-corner {
+  border-collapse:collapse;
+  font-size:12px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align:left;
+  width:480px;
+}
+#rounded-corner thead th.rounded-company {
+  background:#B9C9FE url(http://media.smashingmagazine.com/cdn_smash/images/express-css-table-design/table-images/left.png) no-repeat scroll left -1px;
+}
+#rounded-corner thead th.rounded-q4 {
+  background:#B9C9FE url(http://media.smashingmagazine.com/cdn_smash/images/express-css-table-design/table-images/right.png) no-repeat scroll right -1px;
+}
+#rounded-corner th {
+  color:#003399;
+  font-size:15px;
+  font-weight:normal;
+  padding:8px;
+}
+#rounded-corner td {
+  border-top:1px solid #FFFFFF;
+  color:#666699;
+  padding:8px;
+}
+#rounded-corner tfoot td.rounded-foot-left {
+  background:#E8EDFF url(http://media.smashingmagazine.com/cdn_smash/images/express-css-table-design/table-images/botleft.png) no-repeat scroll left bottom;
+}
+#rounded-corner tfoot td.rounded-foot-right {
+  background:#E8EDFF url(http://media.smashingmagazine.com/cdn_smash/images/express-css-table-design/table-images/botright.png) no-repeat scroll right bottom;
+}
+#rounded-corner tbody tr:hover td {
+  background:#D0DAFD none repeat scroll 0 0;
+}
