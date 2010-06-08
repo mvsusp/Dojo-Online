@@ -6,6 +6,10 @@ class CreateRooms < ActiveRecord::Migration
       t.integer :user_id     # this user is the OWNER of this room
       t.boolean :initiated   # true if this room is initiated, false otherwise
 
+      t.string :source_code
+      t.string :test_code
+      t.string :code_result
+
       t.timestamps
     end
   end

@@ -3,6 +3,9 @@ require 'spec_helper'
 require 'capybara/rails'
 
 describe 'Login and session' do
+  before(:each) do
+    visit('/login/logout')
+  end
   
   after(:each) do
     visit('/login/logout')
@@ -31,14 +34,14 @@ describe 'Logout' do
   
   before(:all) do
     User.destroy_all
-    visit('/login/logout')
     visit('/')
+    visit('/login/logout')
     fill_in('user[name]', :with => 'Lucas')
     click_button('Login')
   end
   
   it 'should remember your username' do
-    visit('/')
+    visit('/rooms')
     page.should have_content('Lucas')
   end
   
@@ -69,8 +72,7 @@ describe "Rooms" do
     fill_in('room[description]', :with => 'Saint description, Batman!')
     check('room[language_ids][]')
     click_button('Create')
-    page.should have_content('Welcome to the room Bat-cave, Batman')
-    page.should have_content('The owner name is Batman')
+    page.should have_content('Batman')
     page.should have_content('Saint description, Batman!')
     visit('/rooms')
     page.should have_content('Bat-cave')

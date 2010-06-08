@@ -1,4 +1,5 @@
 <%= form_tag :controller => "user", :action => "create" %>
-Name: <%= text_field "user", "name" %>
+<h2 class="demoHeaders">Name</h2>
+<%= text_field "user", "name" %>
 <br />
-<%= submit_tag "Login" %>
+<%= submit_tag "Login", :class => "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" %>
