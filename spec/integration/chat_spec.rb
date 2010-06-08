@@ -6,10 +6,9 @@ describe 'Chat Messages post' do
     Room.destroy_all
     User.destroy_all
     Language.destroy_all
-    user = User.create(:name => 'unique')
     l = Language.create()
-    @room = Room.create! :languages => [l], :description => 'a', :user => user, :name => 'n'
-    @room2 = Room.create!  :languages => [l], :description => 'a', :user => user, :name => 'nqwe'
+    @room = Room.create! :languages => [l], :description => 'a', :name => 'n'
+    @room2 = Room.create!  :languages => [l], :description => 'a', :name => 'nqwe'
   end
 
   before :each do  

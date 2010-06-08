@@ -13,11 +13,9 @@ describe RoomsController do
   end
 
   it "should not list uninitiated rooms" do
-    Room.create({:name => "test1",:description => "something",:languages => @lang,
-       :user=>User.create(:name=>'foo1')})
+    Room.create({:name => "test1",:description => "something",:languages => @lang})
 
-    Room.create({:name => "test1",:description => "something",:languages => @lang,
-       :user=>User.create(:name=>'foo2')})
+    Room.create({:name => "test1",:description => "something",:languages => @lang})
 
     assert_response :success
     get :index
@@ -27,11 +25,9 @@ describe RoomsController do
 
 
   it "should list initiated rooms" do
-    room1 = Room.create({:name => "test1",:description => "something",:languages => @lang,
-      :user=>User.create(:name=>'foo1'), :initiated=>true})
+    room1 = Room.create({:name => "test1",:description => "something",:languages => @lang, :initiated=>true})
 
-    room2 = Room.create({:name => "test2",:description => "something",:languages => @lang,
-    :user=>User.create(:name=>'foo2'),:initiated=>true})
+    room2 = Room.create({:name => "test2",:description => "something",:languages => @lang, :initiated=>true})
     
     rooms = [room1, room2]
 
