@@ -16,11 +16,7 @@ class Chat
         return [200, {"Content-Type" => "text/html"}, ['']]
       else
         chats = ChatMessage.find :all, :conditions => {:room_id => session['room']}
-        r=[]
-        for chat in chats
-          r += [{:message => chat[:message], :poster => chat[:poster], :timestamp => chat[:created_at]}]
-        end
-        return [200, {"Content-Type" => "text/html"}, [r.to_json]] 
+        return [200, {"Content-Type" => "text/html"}, [chats.to_json]] 
       end
     else
       [404, {"Content-Type" => "text/html"}, ["Not Found"]]

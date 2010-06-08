@@ -45,4 +45,23 @@ describe "Rooms" do
     page.should have_content('Test')
   end
 
+  it 'should not allow two rooms with the same name' do
+    visit('/rooms/new')
+    fill_in('room[name]', :with => 'This name is taken')
+    fill_in('room[description]', :with => ':)')
+    check('room[language_ids][]')
+    click_button('Create')
+    visit('/rooms')
+    page.should have_content(':)')
+    
+    visit('/rooms/new')
+    fill_in('room[name]', :with => 'This name is taken')
+    fill_in('room[description]', :with => ':(')
+    check('room[language_ids][]')
+    click_button('Create')
+    page.should have_content('Name has already been taken')
+    visit('/rooms')
+    page.should_not have_content(':(')
+  end
+
 end
