@@ -3,11 +3,13 @@
 <h3>Welcome, <%= cookies[:user] %>! </h3>
 
 <p>
-<%= link_to 'New room', new_room_path %>
+<%= link_to( '<span class="ui-button-text">New room</span>', new_room_path, :class => "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only") if cookies[:user] %>
+
 </p>
 
 <p>
 
-<%= link_to 'List initiated rooms', rooms_path %>
+<%= link_to( '<span class="ui-button-text">List initiated rooms</span>', rooms_path, :class => "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only") if cookies[:user] %>
+
 </p>
 

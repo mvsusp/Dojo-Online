@@ -3,6 +3,9 @@ require 'spec_helper'
 require 'capybara/rails'
 
 describe 'Login and session' do
+  before(:each) do
+    visit('/login/logout')
+  end
   
   after(:each) do
     visit('/login/logout')
@@ -28,8 +31,9 @@ end
 
 describe 'Logout' do
   
-  before(:all) do
+  before do
     visit('/')
+    visit('/login/logout')
     fill_in('user[name]', :with => 'Lucas')
     click_button('Login')
   end
