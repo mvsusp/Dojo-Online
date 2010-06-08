@@ -14,10 +14,6 @@ describe "Rooms" do
     @user = User.find(:first, :conditions => {:name => 'Batman'})
   end
 
-  after(:each) do
-    visit('/login/logout')
-  end
-    
   it 'should create rooms and show them in the room list' do
     visit('/rooms/new')
     fill_in('room[name]', :with => 'Bat-cave')
@@ -32,17 +28,21 @@ describe "Rooms" do
     page.should have_content('Saint description, Batman!')
   end
 
-  it 'should create a room with a valid name' do
-    visit('/')
-    fill_in('user[name]', :with => 'Lucas')
-    click_button('Login')
-    page.should have_content('Lucas')
+  it 'should display a "run" button only for the owner' do
     visit('/rooms/new')
-    fill_in('room[name]', :with => 'Test')
-    fill_in('room[description]', :with => 'something')
+    fill_in('room[name]', :with => 'Return of the Bat-cave')
+    fill_in('room[description]', :with => 'Welcome to my cave. Again')
     check('room[language_ids][]')
     click_button('Create')
-    page.should have_content('Test')
+    room = Room.find :first, :conditions => {:name => 'Return of the Bat-cave'}
+    button = find_button('Run')
+    button.should_not == nil
+    visit('/login/logout')
+    fill_in('user[name]', :with => 'Robin')
+    click_button('Login')
+    visit('/rooms/' + room.id.to_s)
+    button = find_button('Run')
+    button.should == nil
   end
 
 end
