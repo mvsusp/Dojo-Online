@@ -6,9 +6,10 @@
 <%= javascript_include_tag 'jquery.scrollTo' %>
 <%= javascript_include_tag 'chat' %>
 
-<p>Welcome to the room <strong><%=h @room.name %>, <%=h cookies[:user] %></strong>! 	<%= link_to 'Leave Dojo', rooms_path %> 
+<p>Welcome to the room <strong><%=h @room.name %>, <%=h cookies[:user] %></strong>! 	
+<%= link_to 'Leave Dojo', rooms_path %> </p>
 
-<p>The owner name is </p>
+<p>The owner name is <%=h @owner.name %> </p>
 
 <pre><%=h @room.description %></pre>
 

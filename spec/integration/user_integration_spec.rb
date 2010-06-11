@@ -10,10 +10,11 @@ describe 'Login and session' do
  
   it 'should login with a valid name' do
     User.destroy_all
+    visit('/login/logout')
     visit('/')
-    fill_in('user[name]', :with => 'Lucas')
+    fill_in('user[name]', :with => 'Batgirl')
     click_button('Login')
-    page.should have_content('Lucas')
+    page.should have_content('Batgirl')
   end
 
  
@@ -56,7 +57,7 @@ describe "Rooms" do
     User.destroy_all
     Language.destroy_all
     @l = Language.create!(:name => 'Klingon')
-
+    visit('/login/logout')
     visit('/')
     fill_in('user[name]', :with => 'Batman')
     click_button('Login')

@@ -8,8 +8,8 @@ class Room < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :languages
 
-  def add_user (user, owner)
-    temp = IsInTheRoom.create! :user => user, :room_id => @id, :owner => owner
+  def add_user (user, is_the_owner)
+    temp = IsInTheRoom.create! :user => user, :room_id => @id, :owner => is_the_owner
     is_in_the_room << temp
   end
 end
