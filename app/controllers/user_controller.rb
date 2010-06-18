@@ -16,6 +16,12 @@ class UserController < ApplicationController
     name = cookies[:user]
     cookies.delete :user
     @user = User.find(:first, :conditions => {:name => name})
+
+    rooms = IsInTheRoom.find :all, :conditions => {:user_id => @user.id}
+    rooms.each do |r|
+        r.delete
+    end
+
     @user.delete
     redirect_to :controller => "login", :action => "index"
   end
