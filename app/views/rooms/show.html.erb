@@ -1,9 +1,66 @@
-<script type="text/javascript">
- var room_id = <%= @room.id %>
- var user_name = '<%= cookies[:user] %>'
-</script>
 <%= javascript_include_tag 'jquery.scrollTo' %>
-<%= javascript_include_tag 'chat' %>
+<script type="text/javascript">
+var room_id = <%= @room.id %>
+var user_name = '<%= cookies[:user] %>'
+
+function update_fields() {
+  $.getJSON('/rooms/<%=h @room.id %>.json', function(json) {
+      if(json.room.source_code != null)
+        $("#source_code").val(json.room.source_code);
+        
+      if(json.room.test_code != null)
+        $("#test_code").val(json.room.test_code);
+      
+      if(json.room.code_result != null)
+        $("#code_result").val(json.room.code_result);
+  });
+}
+
+<% if @is_pilot %>
+    function send_fields() {
+        $.post("/rooms/<%=h @room.id %>", {'_method': "PUT", 
+                   'source_code': $('#source_code').val(), 
+                   'test_code': $('#test_code').val(),
+                   'code_result': $('#code_result').val()});
+        setTimeout("send_fields()", 1000);
+    }
+    
+    function call_webservice() {
+/*
+function postCode() {
+	$.post("input/callInterpreter", {"input.language" : $("#language").val(), "input.sourceCode" : sourceCode.getCode(), "input.testCode" : testCode.getCode()},
+	
+			function (data) {
+				var txt_result = data.output.result
+				result.edit(txt_result)
+			}, "json")		
+}
+
+*/
+      $.post("http://eclipse.ime.usp.br/Dojo-Online-Service/input/callInterpreter", {
+        "input.language" : "ruby",
+        "input.sourceCode" : $('#source_code').val(),
+        "input.testCode" : $('#test_code').val()
+      }, function(json) { $('#code_result').val( json.output.result ); }, "json");
+    }
+
+    $(document).ready(function () {
+        $('#run').click(call_webservice);
+        update_fields();
+        setTimeout("send_fields()", 2000);
+    });
+<% else %>
+    function update_room() {
+      update_fields();
+      setTimeout("update_room()", 3000);
+    }
+
+    $(document).ready(function () {
+        setTimeout("update_room()", 1000);
+    });
+<% end %>
+</script>
+
 
 <p>Welcome to the room <strong><%=h @room.name %></strong>, <strong><%=h cookies[:user] %></strong>!
 <%= link_to 'Leave Dojo', rooms_path %> 
@@ -15,17 +72,17 @@
   <tr>
     <td>
       Source code<br>
-      <textarea id="source_code"  style="width: 100%; height: 100px;" <%="readonly" if @room.user.name != cookies[:user]%>></textarea>
+      <textarea id="source_code"  style="width: 100%; height: 100px;" <%="readonly" unless @is_pilot%> ></textarea>
     </td>
     <td>
       Test code<br>
-      <textarea id="test_code"    style="width: 100%; height: 100px;" <%="readonly" if @room.user.name != cookies[:user]%></textarea>
+      <textarea id="test_code"    style="width: 100%; height: 100px;" <%="readonly" unless @is_pilot %> ></textarea>
     </td>
   </tr>
-  <%if @room.user.name == cookies[:user]%>
+  <%if @is_pilot%>
   <tr>
     <td>
-        <input type="submit" action="#" value="Run" />
+        <input id="run" type="button" value="Run" />
     </td>
   </tr>  
   <%end%>
@@ -36,21 +93,3 @@
     </td>
   </tr>
 </table>
-
-<script type="text/javascript" language="Javascript">
-source_code = document.getElementById("source_code");
-test_code = document.getElementById("test_code");
-code_result = document.getElementById("code_result");
-
-function update_room() {
-  $.getJSON('/rooms/<%=h @room.id %>.json', function(json) {
-      source_code.value = json.room.source_code;
-      test_code.value = json.room.test_code;
-      code_result.value = json.room.code_result;
-          });
-  setTimeout("update_room()", 3000);
-}
-
-setTimeout("update_room()", 1000);
-</script>
-
