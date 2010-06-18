@@ -8,14 +8,10 @@ describe "Rooms" do
     User.destroy_all
     Language.destroy_all
     @l = Language.create!(:name => 'Klingon')
-    visit('/')
+    visit('/login/logout')
     fill_in('user[name]', :with => 'Batman')
     click_button('Login')
     @user = User.find(:first, :conditions => {:name => 'Batman'})
-  end
-
-  after(:each) do
-    visit('/login/logout')
   end
     
   it 'should create rooms and show them in the room list' do
@@ -32,17 +28,23 @@ describe "Rooms" do
     page.should have_content('Saint description, Batman!')
   end
 
-  it 'should create a room with a valid name' do
-    visit('/')
-    fill_in('user[name]', :with => 'Lucas')
-    click_button('Login')
-    page.should have_content('Lucas')
+  it 'should not allow two rooms with the same name' do
     visit('/rooms/new')
-    fill_in('room[name]', :with => 'Test')
-    fill_in('room[description]', :with => 'something')
+    fill_in('room[name]', :with => 'This name is taken')
+    fill_in('room[description]', :with => ':)')
     check('room[language_ids][]')
     click_button('Create')
-    page.should have_content('Test')
+    visit('/rooms')
+    page.should have_content(':)')
+    
+    visit('/rooms/new')
+    fill_in('room[name]', :with => 'This name is taken')
+    fill_in('room[description]', :with => ':(')
+    check('room[language_ids][]')
+    click_button('Create')
+    page.should have_content('Name has already been taken')
+    visit('/rooms')
+    page.should_not have_content(':(')
   end
 
 end

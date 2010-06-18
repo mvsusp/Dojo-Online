@@ -1,42 +1,25 @@
-<p>Welcome to the room <strong><%=h @room.name %></strong>, <strong><%=h cookies[:user] %></strong>!
-<%= link_to 'Leave Dojo', rooms_path %> 
+<script type="text/javascript">
+ var room_id = <%= @room.id %>
+ var user_name = '<%= cookies[:user] %>'
+</script>
+<%= javascript_include_tag 'jquery' %>
+<%= javascript_include_tag 'jquery.scrollTo' %>
+<%= javascript_include_tag 'chat' %>
+
+<p>Welcome to the room <strong><%=h @room.name %>, <%=h cookies[:user] %></strong>! 	
+<%= link_to 'Leave Dojo', rooms_path %> </p>
+
+<p>The owner name is <%=h @owner.name %> </p>
+
 
 <pre><%=h @room.description %></pre>
 
-<p>The owner name is <%=h @room.user.name %></p>
 
-<table style="width: 100%; border: 0">
- <tr>
-  <td>
-    Source code<br>
-    <textarea id="source_code" style="width: 100%; height: 100px" readonly></textarea>
-  </td>
-  <td>
-   Test code<br>
-   <textarea id="test_code" style="width: 100%; height: 100px" readonly></textarea>
-  </td>
- </tr>
- <tr>
-  <td colspan="2">
-   <hr>Result<br>
-   <textarea id="code_result" style="width: 100%; height: 100px" readonly></textarea>
-  </td>
- </tr>
-</table>
+<div id="chat">
+  <div id="chat_messages" style="width: 100%; border: solid black 1px; overflow: auto; height: 300px"></div>
+  <form id="send_chat" action="#">
+    <input type="text" id="chat_message" style="width: 30%;" value="" maxlength=500 size=500/> <input type="submit" value="Send" />
+  </form>
+</div>
 
-<script type="text/javascript" language="Javascript">
-source_code = document.getElementById("source_code");
-test_code = document.getElementById("test_code");
-code_result = document.getElementById("code_result");
-
-function update_room() {
-  $.getJSON('/rooms/<%=h @room.id %>.json', function(json) {
-      source_code.value = json.room.source_code;
-      test_code.value = json.room.test_code;
-      code_result.value = json.room.code_result;
-          });
-  setTimeout("update_room()", 3000);
-}
-
-setTimeout("update_room()", 1000);
-</script>
+<%= link_to 'Back to main', login_index_path %>

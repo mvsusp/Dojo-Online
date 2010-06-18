@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1.json
   def show
     @room = Room.find(params[:id])
-
+    @owner = (@room.is_in_the_room.find :first, :conditions => {:owner=>true}).user
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @room }
@@ -43,12 +43,11 @@ class RoomsController < ApplicationController
   def create
     @user = User.find(:first, :conditions => {:name => cookies[:user]})
     @room = Room.new(params[:room])
-    @room.user = @user
     @room.initiated = true
+    @room.add_user(@user, true)
 
     respond_to do |format|
       if @room.save
-
         format.html { redirect_to(@room) }
         format.xml  { render :xml => @room, :status => :created, :location => @room }
       else

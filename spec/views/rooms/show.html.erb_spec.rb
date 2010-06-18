@@ -5,9 +5,9 @@ describe "/rooms/show.html.erb" do
   before(:each) do
     assigns[:room] = @room = stub_model(Room,
       :name => "value for name",
-      :description => "value for description",
-      :user => User.new(:name=>"Test")
+      :description => "value for description"
     )
+    assigns[:owner] = @owner = stub_model(User, :name => 'Batman')
   end
 
   it "renders attributes in <p>" do

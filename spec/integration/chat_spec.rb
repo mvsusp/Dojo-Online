@@ -6,10 +6,9 @@ describe 'Chat Messages post' do
     Room.destroy_all
     User.destroy_all
     Language.destroy_all
-    user = User.create(:name => 'unique')
     l = Language.create()
-    @room = Room.create! :languages => [l], :description => 'a', :user => user, :name => 'n'
-    @room2 = Room.create!  :languages => [l], :description => 'a', :user => user, :name => 'nqwe'
+    @room = Room.create! :languages => [l], :description => 'a', :name => 'n'
+    @room2 = Room.create!  :languages => [l], :description => 'a', :name => 'nqwe'
   end
 
   before :each do  
@@ -100,8 +99,8 @@ describe 'Chat Messages get' do
     Language.destroy_all
     user = User.create(:name => 'unique')
     l = Language.create()
-    @room = Room.create! :languages => [l], :description => 'a', :user => user, :name => 'n'
-    @room2 = Room.create!  :languages => [l], :description => 'a', :user => user, :name => 'nqwe'
+    @room = Room.create! :languages => [l], :description => 'a', :name => 'n'
+    @room2 = Room.create!  :languages => [l], :description => 'a',:name => 'nqwe'
   end
 
   before :each do  
@@ -118,9 +117,8 @@ describe 'Chat Messages get' do
     cookies[:user] = 'User'
     post '/chat', :room => @room.id, :message => 'Mensagem'
     get '/chat', :room => @room.id
-    chat = ChatMessage.find :first, :conditions => {:message => 'Mensagem', :room_id => @room.id}
-    r = [{:message => 'Mensagem', :poster => 'User', :timestamp => chat[:created_at]}]
-    response.body.should == r.to_json
+    chat = ChatMessage.find :all, :conditions => {:message => 'Mensagem', :room_id => @room.id}
+    response.body.should == chat.to_json
   end
   
   it 'should return \'Not logged in\' when not logged in' do
@@ -141,13 +139,11 @@ describe 'Chat Messages get' do
     post '/chat', :room => @room.id, :message => 'Mensagem1'
     post '/chat', :room => @room2.id, :message => 'Mensagem2'
     get '/chat', :room => @room.id
-    chat = ChatMessage.find :first, :conditions => {:message => 'Mensagem1', :room_id => @room.id}
-    r = [{:message => 'Mensagem1', :poster => 'User', :timestamp => chat[:created_at]}]
-    response.body.should == r.to_json
+    chat = ChatMessage.find :all, :conditions => {:message => 'Mensagem1', :room_id => @room.id}
+    response.body.should == chat.to_json
     get '/chat', :room => @room2.id
-    chat = ChatMessage.find :first, :conditions => {:message => 'Mensagem2', :room_id => @room2.id}
-    r = [{:message => 'Mensagem2', :poster => 'User', :timestamp => chat[:created_at]}]
-    response.body.should == r.to_json
+    chat = ChatMessage.find :all, :conditions => {:message => 'Mensagem2', :room_id => @room2.id}
+    response.body.should == chat.to_json
   end
   
   it 'should get a lot of chat with no problem' do
@@ -156,8 +152,7 @@ describe 'Chat Messages get' do
     for i in 1 .. 250 do
       post '/chat', :message => 'test' + i.to_s, :room => @room.id
       get '/chat', :room => @room.id
-      chat = ChatMessage.find :last, :conditions => {:message => 'test' + i.to_s, :room_id => @room.id}
-      #r += [{:message => 'test' + i.to_s, :poster => 'User', :timestamp => chat[:created_at]}]
+      #chat = ChatMessage.find :all, :conditions => {:room_id => @room.id}
       #response.body.should == chat.to_json
     end
   end
