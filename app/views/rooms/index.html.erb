@@ -1,8 +1,8 @@
 <h1>Listing rooms</h1>
 
-<h3>Welcome, <%= cookies[:user] %>! </h3>
+<h2>Welcome, <%= cookies[:user] %>! </h2>
 
-<%= link_to 'New Room', new_room_path %>
+<%= link_to( '<span class="ui-button-text">New room</span>', new_room_path, :class => "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only") if cookies[:user] %>
 <table>
   <tr>
     <th>Name</th>

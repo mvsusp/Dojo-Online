@@ -97,3 +97,4 @@ describe "Rooms" do
     page.should_not have_content(':(')
   end
 end
+

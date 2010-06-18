@@ -11,6 +11,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1
   # GET /rooms/1.xml
+  # GET /rooms/1.json
   def show
     @room = Room.find(params[:id])
     @owner = (@room.is_in_the_room.find :first, :conditions => {:owner=>true}).user
@@ -21,6 +22,7 @@ class RoomsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @room }
+      format.json { render :json => @room }
     end
   end
 
@@ -87,4 +89,5 @@ class RoomsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end

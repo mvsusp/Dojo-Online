@@ -8,7 +8,6 @@ describe "Rooms" do
     User.destroy_all
     Language.destroy_all
     @l = Language.create!(:name => 'Klingon')
-
     visit('/login/logout')
     fill_in('user[name]', :with => 'Batman')
     click_button('Login')
