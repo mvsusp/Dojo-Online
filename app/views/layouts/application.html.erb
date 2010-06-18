@@ -12,13 +12,22 @@
     <%= stylesheet_link_tag 'cupertino/cupertino' %>
   </head>
   <body>
-
-    <h1>Dojo Online</h1>
-    <%= link_to( '<span class="mybutton">Logout</span>', {:controller => "login", :action => "logout"}) if cookies[:user] %>
-    <p style="color: green"><%= flash[:notice] %></p>
-
+    <div>
+    <div id="dojoLogo">
+      <img src="images/dojologo.png"/>
+    </div>
+    <%= link_to( '<span class="mybutton" id="logout">Logout</span>', {:controller => "login", :action => "logout"}) if cookies[:user] %>
+    <% if cookies[:user] %>
+<label class="ui-button-text" style="float: right;">Welcome, <%= cookies[:user] %>! </label>
+<%end%>
+  </div>
+  <div id="dojoMain">
+    <% if flash[:notice] %>
+    <p style="color: green"><%= flash[:notice] %></p> 
+    <% end %>
 
     <%= yield %>
 
+  </div>
   </body>
 </html>
