@@ -38,9 +38,9 @@ class RoomsController < ApplicationController
   end
 
   # GET /rooms/1/edit
-  def edit
-    @room = Room.find(params[:id])
-  end
+  #def edit
+  #  @room = Room.find(params[:id])
+  #end
 
   # POST /rooms
   # POST /rooms.xml
@@ -78,16 +78,18 @@ class RoomsController < ApplicationController
     end
   end
 
+
+
   # DELETE /rooms/1
   # DELETE /rooms/1.xml
-  def destroy
-    @room = Room.find(params[:id])
-    @room.destroy
+  #def destroy
+  #  @room = Room.find(params[:id])
+  #  @room.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(rooms_url) }
-      format.xml  { head :ok }
-    end
-  end
+  #  respond_to do |format|
+  #    format.html { redirect_to(rooms_url) }
+  #    format.xml  { head :ok }
+  #  end
+  #end
 
 end
