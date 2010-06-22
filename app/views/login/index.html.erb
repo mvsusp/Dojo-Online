@@ -1,7 +1,9 @@
 <% if flash[:user] %>
-  <h2 class="padding ui-state-highlight ui-corner-all"> <%= flash[:user] %></h2>
+  <div class="div-on-center" style="clear: both;">
+  <h2 class="ui-state-highlight ui-corner-all" style="padding: 5px;"> <%= flash[:user] %></h2>
+</div>
 <% end %>
-<div class="div-on-center">
+<div class="div-on-center" style="clear: both;">
 <%= form_tag :controller => "user", :action => "create" %>
 <h2>Please type your nickname:
 <%= text_field "user", "name" %>

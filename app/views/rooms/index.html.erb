@@ -6,18 +6,18 @@
   <thead>
     <th id="rounded-company" scope="col" >Name</th>
     <th id="rounded-q4">Description</th>
-    <th id="rounded-q4">Action</th>
+    <th id="rounded-company">Action</th>
   </thead>
 
 <% @rooms.each do |room| %>
   <tr>
-    <td><%=h room.name %></td>
-    <% if room.description.length < 30 %>
+    <td class="first"><%=h room.name %></td>
+    <% if room.description.length < 300 %>
              <td> <%=h room.description %></td>
     <% else %>
-	     <td><%=h room.description[0..30] %>...</td>
+	     <td><%=h room.description[0..300] %>...</td>
     <% end %>
-    <td><%= link_to '<span class="mybutton">Enter</span>', room %></td>
+    <td class="last"><%= link_to '<span class="mybutton">Enter</span>', room %></td>
   </tr>
 <% end %>
 </table>

@@ -3,6 +3,9 @@ body{
   background-image: url(../images/bg.gif); 
   font: 70% "Trebuchet MS", sans-serif; 
   margin: 50px;
+  -moz-border-radius: 6px; 
+  -webkit-border-radius: 6px; 
+  border-radius: 6px;
 }
 #logout {
   float:right;
@@ -11,7 +14,7 @@ body{
   float:left;
 }
 #dojoMain {
-  padding: 10px 0;
+  padding: 15px;
   margin: 0 auto;
   clear: both;
   background-color: white;
@@ -34,7 +37,7 @@ ul#icons span.ui-icon {float: left; margin: 0 4px;}
   margin-top: 20px;
   margin-bottom: 20px;
   text-align:left;
-  width:480px;
+  width:800px;
 }
 #rounded-corner thead th.rounded-company {
   background:#B9C9FE url(http://media.smashingmagazine.com/cdn_smash/images/express-css-table-design/table-images/left.png) no-repeat scroll left -1px;
@@ -59,6 +62,16 @@ ul#icons span.ui-icon {float: left; margin: 0 4px;}
 #rounded-corner tfoot td.rounded-foot-right {
   background:#E8EDFF url(http://media.smashingmagazine.com/cdn_smash/images/express-css-table-design/table-images/botright.png) no-repeat scroll right bottom;
 }
+#rounded-corner .first {
+	  -moz-border-radius: 6px 0 0 6px; 
+  -webkit-border-radius:  6px 0 0 6px; 
+  border-radius: 6px 0 0 6px;
+}
+#rounded-corner .last {
+	  -moz-border-radius:  0 6px 6px 0; 
+  -webkit-border-radius:0 6px 6px 0; 
+  border-radius: 0 6px 6px 0;
+}
 #rounded-corner tbody tr:hover td {
-  background:#D0DAFD none repeat scroll 0 0;
+  background:#D0DAFD none repeat scroll 0 0;  
 }
