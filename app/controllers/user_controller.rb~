@@ -5,17 +5,24 @@ class UserController < ApplicationController
     if (@user.save) 
       cookies[:user] = @user.name
       # redirect_to :controller => "dojo", :action => "list"
-      redirect_to :controller => "login", :action => "welcome"
+      redirect_to :controller => "rooms", :action => "index"
     else
-      flash[:user] = "Error: username taker or invalid"
+      flash[:user] = "Error: username taken or invalid"
       redirect_to :controller => "login", :action => "index"
     end
   end
 
   def remove
-    @user = User.find(:first, :conditions => {:name => cookies[:user]})
-    @user.delete
+    name = cookies[:user]
     cookies.delete :user
+    @user = User.find(:first, :conditions => {:name => name})
+
+    rooms = IsInTheRoom.find :all, :conditions => {:user_id => @user.id}
+    rooms.each do |r|
+        r.delete
+    end
+
+    @user.delete
     redirect_to :controller => "login", :action => "index"
   end
 end
