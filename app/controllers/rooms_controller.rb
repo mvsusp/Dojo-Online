@@ -78,18 +78,4 @@ class RoomsController < ApplicationController
     end
   end
 
-
-
-  # DELETE /rooms/1
-  # DELETE /rooms/1.xml
-  #def destroy
-  #  @room = Room.find(params[:id])
-  #  @room.destroy
-
-  #  respond_to do |format|
-  #    format.html { redirect_to(rooms_url) }
-  #    format.xml  { head :ok }
-  #  end
-  #end
-
 end
