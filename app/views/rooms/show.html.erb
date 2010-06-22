@@ -26,22 +26,13 @@ function update_fields() {
     }
     
     function call_webservice() {
-/*
-function postCode() {
-	$.post("input/callInterpreter", {"input.language" : $("#language").val(), "input.sourceCode" : sourceCode.getCode(), "input.testCode" : testCode.getCode()},
-	
-			function (data) {
-				var txt_result = data.output.result
-				result.edit(txt_result)
-			}, "json")		
-}
-
-*/
-      $.post("http://eclipse.ime.usp.br/Dojo-Online-Service/input/callInterpreter", {
+      $.post("/run_code", {
         "input.language" : "ruby",
         "input.sourceCode" : $('#source_code').val(),
         "input.testCode" : $('#test_code').val()
-      }, function(json) { $('#code_result').val( json.output.result ); }, "json");
+      }, function(json) {
+            $('#code_result').val( json.output.result );
+          }, "json");
     }
 
     $(document).ready(function () {
