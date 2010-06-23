@@ -1,6 +1,6 @@
 <script type="text/javascript">
- var room_id = <%= @room.id %>
- var user_name = '<%= cookies[:user] %>'
+ var room_id = <%=h @room.id %>;
+ var user_name = '<%=h cookies[:user] %>';
 </script>
 <%= javascript_include_tag 'jquery' %>
 <%= javascript_include_tag 'jquery.scrollTo' %>
@@ -14,6 +14,9 @@
 
 <pre><%=h @room.description %></pre>
 
+<!-- depois substitui pelo css... -->
+<table style="border:0; padding: 0">
+<tr><td width="100%">
 
 <div id="chat">
   <div id="chat_messages" style="width: 100%; border: solid black 1px; overflow: auto; height: 300px"></div>
@@ -21,5 +24,33 @@
     <input type="text" id="chat_message" style="width: 30%;" value="" maxlength=500 size=500/> <input type="submit" value="Send" />
   </form>
 </div>
+
+</td><td style="vertical-align: top">
+
+<!-- lista de usuarios | corte aqui -->
+<div id="userlist" style="width: 100px; border: 1px solid black; overflow: auto; height:300px; padding: 5px;">Loading...</div>
+<script type="text/javascript">
+function update_userlist() {
+  $.getJSON('/userlist?room=' + room_id, function(user) {
+      var txt = '';
+      for(i=0; i<user.length; i++) {
+          if(user[i] != '<%=h @owner.name %>')
+              txt += user[i] + '<br />';
+          else
+              txt += '<strong>' + user[i] + '</strong><br />';
+      }
+      $('#userlist').html(txt);
+
+  });
+
+  setTimeout("update_userlist()", 2000);
+}
+
+$(document).ready(function() { setTimeout("update_userlist()", 1000); });
+</script>
+<!-- lista de usuarios | corte aqui -->
+
+</td></tr>
+</table>
 
 <%= link_to 'Back to main', login_index_path %>

@@ -9,12 +9,17 @@ class RoomsController < ApplicationController
     end
   end
 
+
   # GET /rooms/1
   # GET /rooms/1.xml
   # GET /rooms/1.json
   def show
     @room = Room.find(params[:id])
     @owner = (@room.is_in_the_room.find :first, :conditions => {:owner=>true}).user
+
+    @user = User.find(:first, :conditions => {:name => cookies[:user]})
+    @room.add_user(@user, false)
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @room }
@@ -33,21 +38,16 @@ class RoomsController < ApplicationController
     end
   end
 
-  # GET /rooms/1/edit
-  def edit
-    @room = Room.find(params[:id])
-  end
-
   # POST /rooms
   # POST /rooms.xml
   def create
     @user = User.find(:first, :conditions => {:name => cookies[:user]})
     @room = Room.new(params[:room])
     @room.initiated = true
-    @room.add_user(@user, true)
 
     respond_to do |format|
       if @room.save
+        @room.add_user(@user, true)
         format.html { redirect_to(@room) }
         format.xml  { render :xml => @room, :status => :created, :location => @room }
       else
@@ -73,17 +73,4 @@ class RoomsController < ApplicationController
       end
     end
   end
-
-  # DELETE /rooms/1
-  # DELETE /rooms/1.xml
-  def destroy
-    @room = Room.find(params[:id])
-    @room.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(rooms_url) }
-      format.xml  { head :ok }
-    end
-  end
-
 end
