@@ -8,8 +8,11 @@ class Room < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :languages
 
-  def add_user (user, is_the_owner)
-    temp = IsInTheRoom.create! :user => user, :room_id => @id, :owner => is_the_owner
-    is_in_the_room << temp
+  def add_user(user, is_the_owner)
+    a = IsInTheRoom.find :all, :conditions => {:room_id => self.id, :user_id => user.id}
+    if a.empty? then
+        temp = IsInTheRoom.create! :user => user, :room_id => self.id, :owner => is_the_owner
+        is_in_the_room << temp
+    end
   end
 end

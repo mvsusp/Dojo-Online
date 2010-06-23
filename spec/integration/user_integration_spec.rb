@@ -4,13 +4,19 @@ require 'capybara/rails'
 
 describe 'Login and session' do
   
+  before(:all) do
+    Room.destroy_all
+    User.destroy_all
+    Language.destroy_all
+    @l = Language.create!(:name => 'Klingon')
+    visit('/login/logout')
+  end
+
   after(:each) do
     visit('/login/logout')
   end
  
   it 'should login with a valid name' do
-    User.destroy_all
-    visit('/login/logout')
     visit('/')
     fill_in('user[name]', :with => 'Batgirl')
     click_button('Login')
@@ -22,9 +28,8 @@ describe 'Login and session' do
     visit('/')
     fill_in('user[name]', :with => '')
     click_button('Login')
-    page.should have_content('Error')
+    page.should_not have_content('Welcome')
   end
-
 
 end
 

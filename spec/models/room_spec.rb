@@ -2,11 +2,37 @@ require 'spec_helper'
 
 describe Room do
   before(:each) do
+    @lang = Language.create!(:name => "Ruby")
     @valid_attributes = {
       :name => "value for name",
       :description => "value for description",
       :languages => [Language.create(:name => 'Ruby')]
     }
+  end
+
+
+  it "User should be in the room" do
+    @user = User.create!(:name => "test1")
+    @room = Room.create!(:name => "test1",:description => "something",:languages   => [@lang])
+    @room.initiated = true
+    @room.add_user(@user, true)
+
+    a = IsInTheRoom.find :all, :conditions => {:user_id => @user.id, :room_id => @room.id}
+    a.should_not == nil
+
+  end
+
+
+  it "User should not enter in room again" do
+    user = User.create!(:name => "test2")
+    room = Room.create!(:name => "test2",:description => "something",:languages   => [@lang])
+    room.initiated = true
+    room.add_user(user, true)
+
+    room.add_user(user, false)
+
+    a = IsInTheRoom.find :all, :conditions => {:user_id => user.id, :room_id => room.id}
+    a.length.should == 1
   end
 
   it "should create a new instance given valid attributes" do
