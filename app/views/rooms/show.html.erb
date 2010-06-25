@@ -72,6 +72,7 @@ function update_fields() {
 
 <p>Welcome to the room <strong><%=h @room.name %></strong>, <strong><%=h cookies[:user] %></strong>!
 <%= link_to 'Leave Dojo', rooms_path %></p>
+
 <pre><%=h @room.description %></pre>
 
 <!-- depois substitui pelo css... -->
@@ -113,10 +114,14 @@ function update_fields() {
     <input type="text" id="chat_message" style="width: 30%;" value="" maxlength=500 size=500/> <input type="submit" value="Send" />
   </form>
 </div>
+</td>
 
-</td><td style="vertical-align: top">
-
+<td style="vertical-align: top">
 <div id="userlist" style="width: 100px; border: 1px solid black; overflow: auto; height:300px; padding: 5px;">Loading...</div>
+</td></tr>
+</table>
+
+
 <script type="text/javascript">
 function update_userlist() {
   $.getJSON('/userlist?room=' + room_id, function(user) {
@@ -138,5 +143,3 @@ function update_userlist() {
 $(document).ready(function() { window.setTimeout("update_userlist()", 1000); });
 </script>
 
-</td></tr>
-</table>
