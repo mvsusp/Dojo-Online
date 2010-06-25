@@ -5,14 +5,24 @@ var user_name = '<%= cookies[:user] %>'
 
 function update_fields() {
   $.getJSON('/rooms/<%=h @room.id %>.json', function(json) {
-      if(json.room.source_code != null)
+      if(json.room.source_code != null) {
+        scroll_pos = $("#source_code").scrollTop();
         $("#source_code").val(json.room.source_code);
-        
-      if(json.room.test_code != null)
-        $("#test_code").val(json.room.test_code);
+        $("#source_code").scrollTop(scroll_pos)
       
-      if(json.room.code_result != null)
-        $("#code_result").val(json.room.code_result);
+      }
+      if(json.room.test_code != null){
+        scroll_pos = $("#test_code").scrollTop();
+        $("#test_code").val(json.room.test_code);
+        $("#test_code").scrollTop(scroll_pos)
+      }
+      if(json.room.code_result != null){
+        var temp = $('#code_result').val();
+        if (temp != json.room.code_result ){
+            $('#code_result').val( json.room.code_result );
+            $('#code_result').scrollTo('max')
+        }
+      }
   });
 }
 
@@ -31,7 +41,11 @@ function update_fields() {
         "input.sourceCode" : $('#source_code').val(),
         "input.testCode" : $('#test_code').val()
       }, function(json) {
-            $('#code_result').val( json.output.result );
+            var temp = $('#code_result').val();
+            if (temp != json.output.result ){
+                $('#code_result').val( json.output.result );
+                $('#code_result').scrollTo('max')
+            }
           }, "json");
     }
 
