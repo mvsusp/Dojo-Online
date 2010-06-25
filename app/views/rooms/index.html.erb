@@ -2,22 +2,23 @@
 
 <h2>Welcome, <%=h cookies[:user] %>! </h2>
 
-<%= link_to( '<span class="ui-button-text">New room</span>', new_room_path, :class => "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only") if cookies[:user] %>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-  </tr>
+<%= link_to( '<span class="mybutton">New room</span>', new_room_path) if cookies[:user] %>
+<table id="rounded-corner">
+  <thead>
+    <th id="rounded-company" scope="col" >Name</th>
+    <th id="rounded-q4">Description</th>
+    <th id="rounded-company">Action</th>
+  </thead>
 
 <% @rooms.each do |room| %>
   <tr>
-    <td><%=h room.name %></td>
-    <% if room.description.length < 30 %>
+    <td class="first"><%=h room.name %></td>
+    <% if room.description.length < 300 %>
              <td> <%=h room.description %></td>
     <% else %>
-	     <td><%=h room.description[0..30] %>...</td>
+	     <td><%=h room.description[0..300] %>...</td>
     <% end %>
-    <td><%= link_to 'Enter to room', room %></td>
+    <td class="last"><%= link_to '<span class="mybutton">Enter</span>', room %></td>
   </tr>
 <% end %>
 </table>

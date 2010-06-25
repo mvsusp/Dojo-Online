@@ -7,6 +7,4 @@ describe LoginController do
     response.should redirect_to(:controller => 'login', :action => 'index')
   end
 
-
-  
 end

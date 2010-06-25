@@ -7,17 +7,29 @@
 	<title>Rooms: <%= controller.action_name %></title>
 	<%= javascript_include_tag 'jquery' %>
 	<%= javascript_include_tag 'jquery-ui' %>
+	<%= javascript_include_tag 'application' %>
 	<%= stylesheet_link_tag 'base' %>
 	<%= stylesheet_link_tag 'cupertino/cupertino' %>
 </head>
 <body>
+	<div>
+		<div id="dojoLogo">
+			<img src="/images/dojologo.png"/>
+		</div>
+		<div style="float: right; vertical-align: center">
+			<% if cookies[:user] %><h2 >Welcome, <%= cookies[:user] %>!</h2> 
+			<%end%>
 
-	<h1>Dojo Online</h1>
-	<%= link_to( '<span class="ui-button-text">Logout</span>', {:controller => "login", :action => "logout"}, :class => "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only") if cookies[:user] %>
-	<p style="color: green"><%= flash[:notice] %></p>
+			<%= link_to( '<div class="mybutton" id="logout">Logout</div>', {:controller => "login", :action => "logout"}) if cookies[:user] %>
+		</div>
+	</div>
+	<div id="dojoMain" class="ui-corner-all">
+		<% if flash[:notice] %>
+		<p style="color: green"><%= flash[:notice] %></p> 
+		<% end %>
 
+		<%= yield %>
 
-	<%= yield %>
-
+	</div>
 </body>
 </html>
