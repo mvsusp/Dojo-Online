@@ -2,7 +2,7 @@ class UserController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if (@user.save) 
+    if (@user.save)
       cookies[:user] = @user.name
       # redirect_to :controller => "dojo", :action => "list"
       redirect_to :controller => "rooms", :action => "index"

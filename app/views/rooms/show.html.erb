@@ -1,6 +1,6 @@
 <script type="text/javascript">
  var room_id = <%=h @room.id %>;
- var user_name = '<%=h cookies[:user] %>';
+ var user_name = '<%=h cookies[:user].gsub "'", "&apos;"  %>';
 </script>
 <%= javascript_include_tag 'jquery' %>
 <%= javascript_include_tag 'jquery.scrollTo' %>
@@ -34,23 +34,22 @@ function update_userlist() {
   $.getJSON('/userlist?room=' + room_id, function(user) {
       var txt = '';
       for(i=0; i<user.length; i++) {
-          if(user[i] != '<%=h @owner.name %>')
-              txt += user[i] + '<br />';
+          var usr = user[i].replace('<', '&lt;').replace('>','&gt;').replace('\'', '&apos;'); 
+          if(usr != '<%=h @owner.name.gsub "'", "&apos;" %>')
+              txt += usr + '<br />';
           else
-              txt += '<strong>' + user[i] + '</strong><br />';
+              txt += '<strong>' + usr + '</strong><br />';
       }
       $('#userlist').html(txt);
 
   });
 
-  setTimeout("update_userlist()", 2000);
+  window.setTimeout("update_userlist()", 2000);
 }
 
-$(document).ready(function() { setTimeout("update_userlist()", 1000); });
+$(document).ready(function() { window.setTimeout("update_userlist()", 1000); });
 </script>
 <!-- lista de usuarios | corte aqui -->
 
 </td></tr>
 </table>
-
-<%= link_to 'Back to main', login_index_path %>
