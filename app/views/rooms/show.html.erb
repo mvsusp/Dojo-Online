@@ -1,10 +1,8 @@
-<%= javascript_include_tag 'jquery' %>
-<%= javascript_include_tag 'jquery.scrollTo' %>
 <%= javascript_include_tag 'chat' %>
 
 <script type="text/javascript">
 var room_id = <%= @room.id %>
-var user_name = '<%=h cookies[:user].gsub "'", "&apos;"  %>';
+var user_name = '<%=h @user.name.gsub "'", "&apos;"  %>';
 
 function update_fields() {
   $.getJSON('/rooms/<%=h @room.id %>.json', function(json) {
@@ -73,7 +71,47 @@ function update_fields() {
 <p>Welcome to the room <strong><%=h @room.name %></strong>, <strong><%=h cookies[:user] %></strong>!
 <%= link_to 'Leave Dojo', rooms_path %></p>
 
-<pre><%=h @room.description %></pre>
+<!-- descricao com accordion -->
+<script type="text/javascript" language="Javascript">
+$(document).ready(function() {
+  $("#accordion").accordion();
+    $('#accordion').hide();
+});
+
+jQuery(document).ready(function(){
+    $('#accordion').click(function() {
+        $(this).toggle('slow');
+        $('#hiden-accordion').show('slow');
+        return false;
+    });
+
+});
+</script>
+
+<script type="text/javascript" language="javascript">
+function expandDescription(){
+    $('#hiden-accordion').hide('slow');
+    $('#accordion').show('slow');
+}
+</script>
+
+
+<div id="accordion">
+  <h3><a href="#">Description</a></h3>
+  <div>
+    <pre>
+        <%=h @room.description %>
+    </pre>
+  </div>
+</div>
+
+<div id="hiden-accordion">
+  <div>
+    <p>
+        <%=h @room.description[0..29] %>... <a href="javascript:expandDescription()">[+]</a>
+    </p>
+  </div>
+</div>
 
 <!-- depois substitui pelo css... -->
 

@@ -17,8 +17,8 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @owner = (@room.is_in_the_room.find :first, :conditions => {:owner=>true}).user
     @user = User.find(:first, :conditions => {:name => cookies[:user]})
-    @room.add_user(@user, false)
-    @is_pilot = @room.user.name == cookies[:user]
+    @is_pilot = @owner == @user
+    @room.add_user(@user, @is_pilot)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -61,7 +61,9 @@ class RoomsController < ApplicationController
   # PUT /rooms/1.xml
   def update
     @room = Room.find(params[:id])
-    @is_pilot = @room.user.name == cookies[:user]
+    @owner = (@room.is_in_the_room.find :first, :conditions => {:owner=>true}).user
+    @user = User.find(:first, :conditions => {:name => cookies[:user]})
+    @is_pilot = @owner == @user
     
     if @is_pilot
       @room.source_code = params[:source_code]

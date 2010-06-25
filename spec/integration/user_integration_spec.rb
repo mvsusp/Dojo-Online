@@ -76,7 +76,6 @@ describe "Rooms" do
     check('room[language_ids][]')
     click_button('Create')
     page.should have_content('Welcome to the room Bat-cave, Batman')
-    page.should have_content('The owner name is Batman')
     page.should have_content('Saint description, Batman!')
     visit('/rooms')
     page.should have_content('Bat-cave')

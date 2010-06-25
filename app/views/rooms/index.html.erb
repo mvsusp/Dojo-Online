@@ -1,7 +1,5 @@
 <h1>Listing rooms</h1>
 
-<h2>Welcome, <%=h cookies[:user] %>! </h2>
-
 <%= link_to( '<span class="mybutton">New room</span>', new_room_path) if cookies[:user] %>
 <table id="rounded-corner">
   <thead>
