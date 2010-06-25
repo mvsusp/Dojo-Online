@@ -34,7 +34,7 @@ function update_userlist() {
   $.getJSON('/userlist?room=' + room_id, function(user) {
       var txt = '';
       for(i=0; i<user.length; i++) {
-          var usr = user[i].replace('<', '&lt;').replace('>','&gt;').replace('\'', '&apos;'); 
+          var usr = user[i].replace(/</g, '&lt;').replace(/>/g,'&gt;').replace(/'/g, '&apos;').replace(/ /g, '&nbsp;'); 
           if(usr != '<%=h @owner.name.gsub "'", "&apos;" %>')
               txt += usr + '<br />';
           else
