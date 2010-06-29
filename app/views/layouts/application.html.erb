@@ -18,10 +18,17 @@
 			<img src="/images/dojologo.png"/>
 		</div>
 		<div style="float: right; vertical-align: center">
-			<% if cookies[:user] %><h2 >Welcome, <%= cookies[:user] %>!</h2> 
+			<% if @room and @room.name %>
+			<h2 >Welcome to the room <%= @room.name %>, <%= cookies[:user] %>!</h2>
+			<% elsif cookies[:user] %>
+			<h2 >Welcome, <%= cookies[:user] %>!</h2> 
 			<%end%>
 
 			<%= link_to( '<div class="mybutton" id="logout">Logout</div>', {:controller => "login", :action => "logout"}) if cookies[:user] %>
+
+			<% if @room and @room.name %>
+			<%= link_to( '<div class="mybutton" id="leave_dojo">Leave Dojo</div>', rooms_path) %>
+			<%end%>
 		</div>
 	</div>
 	<div id="dojoMain" class="ui-corner-all">

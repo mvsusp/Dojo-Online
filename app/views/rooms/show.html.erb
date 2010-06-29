@@ -1,5 +1,7 @@
 
 <%= javascript_include_tag 'chat' %>
+<%= javascript_include_tag 'jquery.scrollTo' %>
+
 
 <script type="text/javascript">
 var room_id = <%= @room.id %>
@@ -69,8 +71,6 @@ function update_fields() {
 </script>
 
 
-<p>Welcome to the room <strong><%=h @room.name %></strong>, <strong><%=h cookies[:user] %></strong>!
-<%= link_to 'Leave Dojo', rooms_path %></p>
 
 <!-- descricao com accordion -->
 <script type="text/javascript" language="Javascript">
@@ -119,43 +119,44 @@ function expandDescription(){
 <table style="width: 100%; border: 0">
   <tr>
     <td>
-      Source code<br>
+      <h2>Source code</h2>
       <textarea id="source_code"  style="width: 100%; height: 100px;" <%="readonly" unless @is_pilot%> ></textarea>
     </td>
     <td>
-      Test code<br>
+      <h2>Test code</h2>
       <textarea id="test_code"    style="width: 100%; height: 100px;" <%="readonly" unless @is_pilot %> ></textarea>
     </td>
   </tr>
   <%if @is_pilot%>
   <tr>
     <td>
-        <input id="run" type="button" value="Run" />
+        <input id="run"  class="mybutton" type="button" value="Run" />
     </td>
   </tr>  
   <%end%>
   <tr>
     <td colspan="2">
-       <hr>Result<br>
+       <hr><h2>Result</h2>
        <textarea id="code_result" style="width: 100%; height: 100px;" readonly></textarea>
     </td>
   </tr>
 </table>
 
 <!-- chat + lista de usuarios -->
-
 <table style="border:0; padding: 0">
 <tr><td width="100%">
+<h2>Room's chat</h2>
 
 <div id="chat">
   <div id="chat_messages" style="width: 100%; border: solid black 1px; overflow: auto; height: 300px"></div>
   <form id="send_chat" action="#">
-    <input type="text" id="chat_message" style="width: 30%;" value="" maxlength=500 size=500/> <input type="submit" value="Send" />
+    <input type="text" id="chat_message" style="width: 30%;" value="" maxlength=500 size=500/> <input class="mybutton" type="submit" value="Send" />
   </form>
 </div>
 </td>
 
 <td style="vertical-align: top">
+<h2>User's list</h2>
 <div id="userlist" style="width: 100px; border: 1px solid black; overflow: auto; height:300px; padding: 5px;">Loading...</div>
 </td></tr>
 </table>
