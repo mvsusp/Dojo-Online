@@ -1,8 +1,8 @@
 class AddCodeTestAndResultsToRoom < ActiveRecord::Migration
   def self.up
-    add_column :rooms, :code, :string
-    add_column :rooms, :tests, :string
-    add_column :rooms, :results, :string
+    add_column :rooms, :code, :text
+    add_column :rooms, :tests, :text
+    add_column :rooms, :results, :text
   end
 
   def self.down

@@ -10,10 +10,4 @@ describe "/rooms/show.html.erb" do
     assigns[:user] = @owner = stub_model(User, :name => 'Batman')
     assigns[:owner] = @owner = stub_model(User, :name => 'Batman')
   end
-
-  it "renders attributes in <p>" do
-    render
-    response.should have_text(/value\ for\ name/)
-    response.should have_text(/value\ for\ description/)
-  end
 end

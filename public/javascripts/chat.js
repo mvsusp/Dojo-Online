@@ -5,7 +5,7 @@ function get_chats(room, callback) {
 function send_chat(message, room)
 {
     $.post('/chat', {'message': message, 'room': room})
-    $('#chat_message').attr('disabled', true);
+    $('#send_message').attr('disabled', true);
     var value = $('#chat_messages').html();
     value += '( -- ) <b>' + user_name + '</b>:' + message +
             '<br />'
@@ -32,7 +32,7 @@ function add_to_chat_messages(messages)
     }
     $('#chat_messages').html(value)
     $('#chat_messages').scrollTo({top:'100%', left:0})
-    $('#chat_message').attr('disabled', false);
+    $('#send_message').attr('disabled', false);
     setTimeout(function () { 
         get_chats(room_id, add_to_chat_messages)
     }, 1000);
