@@ -15,4 +15,14 @@ class Room < ActiveRecord::Base
         is_in_the_room << temp
     end
   end
+
+  def remove_user(user)
+    a = IsInTheRoom.find :first, :conditions => {:room_id => self.id, :user_id => user.id}
+    if !a.nil? then
+        a.room.initiated = false if a.owner
+        a.room.save
+        a.delete
+    end
+  end
+
 end

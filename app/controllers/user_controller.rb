@@ -27,4 +27,5 @@ class UserController < ApplicationController
     @user.delete
     redirect_to :controller => "login", :action => "index"
   end
+
 end

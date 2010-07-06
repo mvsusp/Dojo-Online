@@ -47,9 +47,11 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'login/:action', :controller => "login"
   map.connect 'login/:action/:id', :controller => "login"
   map.connect 'login/:action/:id.:format', :controller => "login"
+ 
+  # Route for leave action
+  map.connect '/rooms/leave/:id', :controller => 'rooms', :action => 'leave'
 
-
-  map.resources :rooms, :only => [:index,:show, :new, :create, :update]
+  map.resources :rooms, :only => [:leave, :index, :show, :new, :create, :update]
 
   map.resources :login, :only => [:index, :welcome, :logout]
   map.resources :user, :only => [:create, :remove]

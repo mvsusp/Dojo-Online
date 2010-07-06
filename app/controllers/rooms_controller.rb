@@ -9,6 +9,13 @@ class RoomsController < ApplicationController
     end
   end
 
+  def leave
+    @user = User.find(:first, :conditions => {:name => cookies[:user]})
+    @room = Room.find(params[:id])
+    @room.remove_user(@user)
+    redirect_to :controller => "rooms", :action => "index"   
+  end
+
 
   # GET /rooms/1
   # GET /rooms/1.xml

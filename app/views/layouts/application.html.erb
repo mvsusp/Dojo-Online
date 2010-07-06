@@ -27,8 +27,10 @@
 			<%= link_to( '<div class="mybutton" id="logout">Logout</div>', {:controller => "login", :action => "logout"}) if cookies[:user] %>
 
 			<% if @room and @room.name %>
-			<%= link_to( '<div class="mybutton" id="leave_dojo">Leave Dojo</div>', rooms_path) %>
+			   <%= link_to( '<div class="mybutton" id="leave_dojo">Leave Dojo</div>',
+	                   {:controller => "rooms", :action => "leave"} ) %>
 			<%end%>
+			
 		</div>
 	</div>
 	<div id="dojoMain" class="ui-corner-all">
